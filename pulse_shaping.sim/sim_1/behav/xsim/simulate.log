@@ -1,3 +1,2 @@
 Time resolution is 1 ps
-$finish called at time : 15410 ns : File "C:/Users/priya/Vivado/pulse_shaping/pulse_shaping.srcs/sim_1/new/testbench_pulse.sv" Line 56
-$finish called at time : 15410 ns : File "C:/Users/priya/Vivado/pulse_shaping/pulse_shaping.srcs/sim_1/new/testbench_pulse.sv" Line 56
+$finish called at time : 3910 ns : File "C:/Users/priya/Vivado/pulse_shaping/pulse_shaping.srcs/sim_1/new/testbench_pulse.sv" Line 75

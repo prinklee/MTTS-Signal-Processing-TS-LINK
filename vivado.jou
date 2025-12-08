@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Mon Dec  8 00:35:31 2025
+# Process ID         : 26652
+# Current directory  : C:/Users/priya/Vivado/tslink-hdl
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent30024 C:\Users\priya\Vivado\tslink-hdl\pulse_shaping.xpr
+# Log file           : C:/Users/priya/Vivado/tslink-hdl/vivado.log
+# Journal file       : C:/Users/priya/Vivado/tslink-hdl\vivado.jou
+# Running On         : Laptop15
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : AMD Ryzen 7 PRO 7840U w/ Radeon 780M Graphics  
+# CPU Frequency      : 3294 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 32926 MB
+# Swap memory        : 2080 MB
+# Total Virtual      : 35007 MB
+# Available Virtual  : 20548 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/priya/Vivado/tslink-hdl/pulse_shaping.xpr

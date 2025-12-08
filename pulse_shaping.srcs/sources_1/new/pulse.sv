@@ -19,9 +19,8 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module pulse #(
-parameter BIT_LENGTH=8, 
-parameter DW = 16)(
+module pulse #( 
+parameter DW = 16, parameter SR = 1024)(
     input logic clk, n_rst,
     input logic [1:0] upsampled_i,
     input logic [1:0] upsampled_q,
@@ -30,14 +29,14 @@ parameter DW = 16)(
     );
     
     
-    logic [DW-1:0] rom_memory [1023:0];
+    logic [DW-1:0] rom_memory [SR-1:0];
     //logic [9:0] a;
     
-    logic [DW-1:0] shift_reg_i [1023:0];
-    logic [DW-1:0] next_shift_reg_i [1023:0];
+    logic [DW-1:0] shift_reg_i [SR-1:0];
+    logic [DW-1:0] next_shift_reg_i [SR-1:0];
     
-    logic [DW-1:0] shift_reg_q [1023:0];
-    logic [DW-1:0] next_shift_reg_q [1023:0];
+    logic [DW-1:0] shift_reg_q [SR-1:0];
+    logic [DW-1:0] next_shift_reg_q [SR-1:0];
     
     initial begin
         $readmemh("sinc.mem", rom_memory); //File with the signal
@@ -46,7 +45,7 @@ parameter DW = 16)(
     always_ff @(posedge clk) begin 
         if (!n_rst) begin
 //            a <= 16'b0;
-            for (int j = 0; j < 1024; j++) begin
+            for (int j = 0; j < SR; j++) begin
                 shift_reg_i[j] <= '0;
                 shift_reg_q[j] <= '0;
             end
@@ -61,37 +60,37 @@ parameter DW = 16)(
 //        i = rom_memory[a];
 //        q = rom_memory[a];
         if (upsampled_i == 2'b0) begin
-            next_shift_reg_i = {shift_reg_i[1022:0], 1023'b0};
-            i = shift_reg_i[1023];
+            next_shift_reg_i = {shift_reg_i[SR-2:0], {DW{1'b0}}};
+            i = shift_reg_i[SR-1];
         end else if (upsampled_i == 2'b1) begin
-            next_shift_reg_i[0] = 1023'b0;
-            for (int j = 1; j < 1024; j++) begin
+            next_shift_reg_i[0] = '0;
+            for (int j = 1; j < SR; j++) begin
                 next_shift_reg_i[j] = shift_reg_i[j]+rom_memory[j];
             end
-            i = shift_reg_i[1023] + rom_memory[1023];
+            i = shift_reg_i[SR-1] + rom_memory[SR-1];
         end else if (upsampled_i == 2'b11) begin
-            next_shift_reg_i[0] = 1023'b0;
-            for (int j = 1; j < 1024; j++) begin
+            next_shift_reg_i[0] = '0;
+            for (int j = 1; j < SR; j++) begin
                 next_shift_reg_i[j] = shift_reg_i[j]-rom_memory[j];
             end
-            i = shift_reg_i[1023] - rom_memory[1023];
+            i = shift_reg_i[SR-1] - rom_memory[SR-1];
         end
         
         if (upsampled_q == 2'b0) begin
-            next_shift_reg_q = {shift_reg_q[1022:0], 1023'b0};
-            q = shift_reg_q[1023];
+            next_shift_reg_q = {shift_reg_q[SR-2:0], {DW{1'b0}}};
+            q = shift_reg_q[SR-1];
         end else if (upsampled_q == 2'b1) begin
-            next_shift_reg_q[0] = 1023'b0;
-            for (int j = 1; j < 1024; j++) begin
+            next_shift_reg_q[0] = '0;
+            for (int j = 1; j < SR; j++) begin
                 next_shift_reg_q[j] = shift_reg_q[j]+rom_memory[j];
             end
-            q = shift_reg_q[1023] + rom_memory[1023];
+            q = shift_reg_q[SR-1] + rom_memory[SR-1];
         end else if (upsampled_q == 2'b11) begin
-            next_shift_reg_q[0] = 1023'b0;
-            for (int j = 1; j < 1024; j++) begin
+            next_shift_reg_q[0] = '0;
+            for (int j = 1; j < SR; j++) begin
                 next_shift_reg_q[j] = shift_reg_q[j]-rom_memory[j];
             end
-            q = shift_reg_q[1023] - rom_memory[1023];
+            q = shift_reg_q[SR-1] - rom_memory[SR-1];
         end
     end
 endmodule

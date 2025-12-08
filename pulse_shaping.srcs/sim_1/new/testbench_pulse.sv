@@ -3,8 +3,9 @@
 module testbench_pulse();
 
     parameter PERIOD = 10;
+    parameter NUMS = 128;
     logic [1:0] upsampled_i, upsampled_q; 
-    logic [15:0] i, q; 
+    logic [11:0] i, q; 
     
     logic n_rst;
     logic clk = 1'b0;
@@ -12,7 +13,7 @@ module testbench_pulse();
     // Correct clock toggle
     always #(PERIOD/2) clk = ~clk;
 
-    pulse #(.BIT_LENGTH(8), .DW(16)) DUT(
+    pulse #(.SR(NUMS), .DW(12)) DUT(
         .clk(clk),
         .n_rst(n_rst),
         .upsampled_i(upsampled_i),
@@ -35,7 +36,16 @@ module testbench_pulse();
         upsampled_i = '0; 
         upsampled_q = '0;
         
-        repeat (256) @(negedge clk);
+        repeat (NUMS/2) @(negedge clk);
+        
+        upsampled_i = 2'd3;
+        upsampled_q = 2'd3;
+        @(negedge clk);
+        
+        upsampled_i = '0; 
+        upsampled_q = '0;
+        
+        repeat (NUMS/2) @(negedge clk);
         upsampled_i = 2'b1;
         upsampled_q = 2'd1;
         
@@ -43,16 +53,25 @@ module testbench_pulse();
         
         upsampled_i = '0;
         upsampled_q = '0;  
-        repeat (256) @(negedge clk);
+        repeat (NUMS/2) @(negedge clk);
         
         upsampled_i = 2'b1;
         upsampled_q = 2'd1;
+        @(negedge clk);
+        
+        upsampled_i = '0; 
+        upsampled_q = '0;
+        
+        repeat (NUMS/2) @(negedge clk);
+        
+        upsampled_i = 2'd3;
+        upsampled_q = 2'd3;
         
         @(negedge clk);
         
         upsampled_i = '0;
         upsampled_q = '0;  
-        repeat (1024) @(negedge clk);
+        repeat (NUMS) @(negedge clk);
         $finish;
     end
 endmodule

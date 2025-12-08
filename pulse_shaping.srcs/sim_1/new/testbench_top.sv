@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 11/14/2025 12:50:48 PM
+// Create Date: 11/21/2025 09:07:19 PM
 // Design Name: 
-// Module Name: pusle_shaping_tb
+// Module Name: testbench_top
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module pusle_shaping_tb(
+module testbench_top(
 
     );
 endmodule
