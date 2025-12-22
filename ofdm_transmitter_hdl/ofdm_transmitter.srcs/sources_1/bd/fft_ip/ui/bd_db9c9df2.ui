@@ -1,0 +1,42 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.883883",
+   "Default View_TopLeft":"-344,-358",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0
+#  -string -flagsOSRD
+preplace port port-id_fft_tlast -pg 1 -lvl 5 -x 1420 -y 0 -defaultsOSRD
+preplace port port-id_fft_tvalid -pg 1 -lvl 5 -x 1420 -y 30 -defaultsOSRD
+preplace port port-id_s_tready -pg 1 -lvl 5 -x 1420 -y -70 -defaultsOSRD
+preplace port port-id_s_tlast -pg 1 -lvl 0 -x -210 -y 40 -defaultsOSRD
+preplace port port-id_s_tvalid -pg 1 -lvl 0 -x -210 -y 80 -defaultsOSRD
+preplace port port-id_clk -pg 1 -lvl 0 -x -210 -y 120 -defaultsOSRD
+preplace portBus real_data -pg 1 -lvl 5 -x 1420 -y -300 -defaultsOSRD
+preplace portBus imag_data -pg 1 -lvl 5 -x 1420 -y -180 -defaultsOSRD
+preplace portBus real_in -pg 1 -lvl 0 -x -210 -y -200 -defaultsOSRD
+preplace portBus imag_in -pg 1 -lvl 0 -x -210 -y -170 -defaultsOSRD
+preplace inst xfft_0 -pg 1 -lvl 3 -x 970 -y 100 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 2 -x 440 -y -180 -defaultsOSRD
+preplace inst xlslice_0 -pg 1 -lvl 4 -x 1300 -y -300 -defaultsOSRD
+preplace inst xlslice_1 -pg 1 -lvl 4 -x 1300 -y -180 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 1 -x -90 -y 280 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 1 -x -90 -y 180 -defaultsOSRD
+preplace netloc xlconcat_0_dout 1 2 1 550 -180n
+preplace netloc xfft_0_m_axis_data_tdata 1 3 1 1180 -300n
+preplace netloc xlslice_0_Dout 1 4 1 N -300
+preplace netloc xlslice_1_Dout 1 4 1 N -180
+preplace netloc xfft_0_m_axis_data_tlast 1 3 2 1190J 0 NJ
+preplace netloc xfft_0_m_axis_data_tvalid 1 3 2 1200J 30 NJ
+preplace netloc In0_0_1 1 0 2 NJ -200 10
+preplace netloc In1_0_1 1 0 2 NJ -170 N
+preplace netloc xfft_0_s_axis_data_tready 1 2 3 770 -70 NJ -70 NJ
+preplace netloc s_tlast 1 0 3 NJ 40 N 40 540
+preplace netloc s_axis_data_tvalid_0_1 1 0 3 NJ 80 10 100 NJ
+preplace netloc aclk_0_1 1 0 3 NJ 120 N 120 550J
+preplace netloc xlconstant_0_dout 1 1 2 N 280 560
+preplace netloc xlconstant_1_dout 1 1 2 N 180 540
+levelinfo -pg 1 -210 -90 440 970 1300 1420
+pagesize -pg 1 -db -bbox -sgen -360 -530 1570 390
+"
+}
+

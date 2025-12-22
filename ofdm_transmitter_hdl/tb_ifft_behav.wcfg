@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_ifft_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_ifft" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="12.900001 us"></ZoomEndTime>
+      <Cursor1Time time="6.135000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="232"></NameColumnWidth>
+      <ValueColumnWidth column_width="90"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="2" />
+   <wvobject fp_name="group12" type="group">
+      <obj_property name="label">Inputs</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_ifft/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ifft/real_in" type="array">
+         <obj_property name="ElementShortName">real_in[15:0]</obj_property>
+         <obj_property name="ObjectShortName">real_in[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ifft/imag_in" type="array">
+         <obj_property name="ElementShortName">imag_in[15:0]</obj_property>
+         <obj_property name="ObjectShortName">imag_in[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ifft/s_tvalid" type="logic">
+         <obj_property name="ElementShortName">s_tvalid</obj_property>
+         <obj_property name="ObjectShortName">s_tvalid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ifft/s_tlast" type="logic">
+         <obj_property name="ElementShortName">s_tlast</obj_property>
+         <obj_property name="ObjectShortName">s_tlast</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group13" type="group">
+      <obj_property name="label">Outputs</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_ifft/real_data" type="array">
+         <obj_property name="ElementShortName">real_data[15:0]</obj_property>
+         <obj_property name="ObjectShortName">real_data[15:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">150</obj_property>
+         <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+         <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+         <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+         <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+         <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+         <obj_property name="AnalogHorizLine">0.000000</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ifft/imag_data" type="array">
+         <obj_property name="ElementShortName">imag_data[15:0]</obj_property>
+         <obj_property name="ObjectShortName">imag_data[15:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">150</obj_property>
+         <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+         <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+         <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+         <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+         <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+         <obj_property name="AnalogHorizLine">0.000000</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ifft/fft_tvalid" type="logic">
+         <obj_property name="ElementShortName">fft_tvalid</obj_property>
+         <obj_property name="ObjectShortName">fft_tvalid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ifft/fft_tlast" type="logic">
+         <obj_property name="ElementShortName">fft_tlast</obj_property>
+         <obj_property name="ObjectShortName">fft_tlast</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ifft/s_tready" type="logic">
+         <obj_property name="ElementShortName">s_tready</obj_property>
+         <obj_property name="ObjectShortName">s_tready</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>
