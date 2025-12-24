@@ -96,13 +96,13 @@
             "value": "fixed_point"
           },
           "implementation_options": {
-            "value": "automatically_select"
+            "value": "pipelined_streaming_io"
           },
           "input_width": {
             "value": "16"
           },
           "number_of_stages_using_block_ram_for_data_and_phase_factors": {
-            "value": "0"
+            "value": "1"
           },
           "output_ordering": {
             "value": "natural_order"

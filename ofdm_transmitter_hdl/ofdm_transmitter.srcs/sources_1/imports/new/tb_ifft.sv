@@ -82,7 +82,31 @@ module tb_ifft(
       s_tvalid = 1;
 
       // DC bin only
-      if (k <= 1) begin
+      if (k == 0 || k == 254) begin
+        real_in = 16'd8192;   // choose value divisible by 256
+        imag_in = 16'd0;
+      end
+      else begin
+        real_in = 16'd0;
+        imag_in = 16'd0;
+      end
+
+      s_tlast = (k == 255);
+    end
+    else begin
+      s_tvalid = 0; // respect backpressure
+      s_tlast  = 0;
+    end
+  end
+  
+  for (int k = 0; k < 256; k++) begin
+    @(posedge clk);
+
+    if (s_tready) begin
+      s_tvalid = 1;
+
+      // DC bin only
+      if (k == 128) begin
         real_in = 16'd8192;   // choose value divisible by 256
         imag_in = 16'd0;
       end
@@ -103,7 +127,7 @@ module tb_ifft(
   s_tvalid = 0;
   s_tlast  = 0;
   
-  repeat (1024) @(negedge clk);
+  repeat (4096) @(negedge clk);
   $finish;
 end
 

@@ -1020,7 +1020,7 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:5726a618</spirit:value>
+            <spirit:value>9:00ebb8cf</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1035,11 +1035,11 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Dec 22 16:41:00 UTC 2025</spirit:value>
+            <spirit:value>Tue Dec 23 02:42:28 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:5726a618</spirit:value>
+            <spirit:value>9:00ebb8cf</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1053,11 +1053,11 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Dec 22 16:44:14 UTC 2025</spirit:value>
+            <spirit:value>Wed Dec 24 01:20:48 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:5726a618</spirit:value>
+            <spirit:value>9:00ebb8cf</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1071,11 +1071,11 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Dec 22 16:41:00 UTC 2025</spirit:value>
+            <spirit:value>Wed Dec 24 01:16:41 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:5726a618</spirit:value>
+            <spirit:value>9:00ebb8cf</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1125,7 +1125,7 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:ead30358</spirit:value>
+            <spirit:value>9:15373dc4</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1141,11 +1141,11 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Dec 22 16:41:00 UTC 2025</spirit:value>
+            <spirit:value>Tue Dec 23 02:42:27 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:ead30358</spirit:value>
+            <spirit:value>9:15373dc4</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1195,7 +1195,7 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:5726a618</spirit:value>
+            <spirit:value>9:00ebb8cf</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1211,11 +1211,11 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Dec 22 16:41:00 UTC 2025</spirit:value>
+            <spirit:value>Wed Dec 24 01:16:41 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:5726a618</spirit:value>
+            <spirit:value>9:00ebb8cf</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1720,7 +1720,7 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_ARCH</spirit:name>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_ARCH">1</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_ARCH">3</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_HAS_NFFT</spirit:name>
@@ -1792,7 +1792,7 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_BRAM_STAGES</spirit:name>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_BRAM_STAGES">0</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_BRAM_STAGES">1</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_REORDER_MEM_TYPE</spirit:name>
@@ -1839,6 +1839,13 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
       <spirit:enumeration>10</spirit:enumeration>
       <spirit:enumeration>11</spirit:enumeration>
       <spirit:enumeration>12</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_6e3ded9c</spirit:name>
+      <spirit:enumeration>0</spirit:enumeration>
+      <spirit:enumeration>1</spirit:enumeration>
+      <spirit:enumeration>2</spirit:enumeration>
+      <spirit:enumeration>3</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
       <spirit:name>choice_list_769cfb1f</spirit:name>
@@ -1888,10 +1895,6 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
       <spirit:enumeration>34</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
-      <spirit:name>choice_list_d85ad257</spirit:name>
-      <spirit:enumeration>0</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
       <spirit:name>choice_list_e6469819</spirit:name>
       <spirit:enumeration>1</spirit:enumeration>
       <spirit:enumeration>2</spirit:enumeration>
@@ -1901,6 +1904,12 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
       <spirit:name>choice_pairs_2533cddb</spirit:name>
       <spirit:enumeration spirit:text="Non Real Time">nonrealtime</spirit:enumeration>
       <spirit:enumeration spirit:text="Real Time">realtime</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_pairs_50324ae3</spirit:name>
+      <spirit:enumeration spirit:text="Fixed Point">fixed_point</spirit:enumeration>
+      <spirit:enumeration spirit:text="Floating Point (pseudo)">floating_point</spirit:enumeration>
+      <spirit:enumeration spirit:text="native floating point">native_floating_point</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
       <spirit:name>choice_pairs_5f99d630</spirit:name>
@@ -1931,11 +1940,6 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
       <spirit:enumeration spirit:text="Block Floating Point">block_floating_point</spirit:enumeration>
       <spirit:enumeration spirit:text="Scaled">scaled</spirit:enumeration>
       <spirit:enumeration spirit:text="Unscaled">unscaled</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
-      <spirit:name>choice_pairs_b279e969</spirit:name>
-      <spirit:enumeration spirit:text="Fixed Point">fixed_point</spirit:enumeration>
-      <spirit:enumeration spirit:text="Floating Point (pseudo)">floating_point</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
       <spirit:name>choice_pairs_d9974fab</spirit:name>
@@ -2381,7 +2385,7 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>implementation_options</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.implementation_options" spirit:choiceRef="choice_pairs_5f99d630" spirit:order="5">automatically_select</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.implementation_options" spirit:choiceRef="choice_pairs_5f99d630" spirit:order="5">pipelined_streaming_io</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>target_data_throughput</spirit:name>
@@ -2393,7 +2397,7 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>data_format</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.data_format" spirit:choiceRef="choice_pairs_b279e969" spirit:order="8">fixed_point</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.data_format" spirit:choiceRef="choice_pairs_50324ae3" spirit:order="8">fixed_point</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>input_width</spirit:name>
@@ -2453,7 +2457,7 @@ ependency {} format bool minimum {} maximum {}} value false}}}}}}}}} TUSER_WIDTH
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>number_of_stages_using_block_ram_for_data_and_phase_factors</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.number_of_stages_using_block_ram_for_data_and_phase_factors" spirit:choiceRef="choice_list_d85ad257" spirit:order="23">0</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.number_of_stages_using_block_ram_for_data_and_phase_factors" spirit:choiceRef="choice_list_6e3ded9c" spirit:order="23">1</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>memory_options_hybrid</spirit:name>

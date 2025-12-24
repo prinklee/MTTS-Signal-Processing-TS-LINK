@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Dec 22 13:29:14 2025" VIVADOVERSION="2025.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Dec 22 21:42:28 2025" VIVADOVERSION="2025.1">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:arty-a7-100:part0:1.1" DEVICE="7a100t" NAME="fft_ip" PACKAGE="csg324" SPEEDGRADE="-1"/>
 
@@ -64,9 +64,9 @@
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=xfft;v=v9_1;d=pg109-xfft.pdf"/>
       </DOCUMENTS>
       <PARAMETERS>
-        <PARAMETER NAME="C_ARCH" VALUE="1"/>
+        <PARAMETER NAME="C_ARCH" VALUE="3"/>
         <PARAMETER NAME="C_BFLY_TYPE" VALUE="0"/>
-        <PARAMETER NAME="C_BRAM_STAGES" VALUE="0"/>
+        <PARAMETER NAME="C_BRAM_STAGES" VALUE="1"/>
         <PARAMETER NAME="C_CHANNELS" VALUE="1"/>
         <PARAMETER NAME="C_CMPY_TYPE" VALUE="1"/>
         <PARAMETER NAME="C_DATA_MEM_TYPE" VALUE="1"/>
@@ -110,13 +110,13 @@
         <PARAMETER NAME="complex_mult_type" VALUE="use_mults_resources"/>
         <PARAMETER NAME="cyclic_prefix_insertion" VALUE="false"/>
         <PARAMETER NAME="data_format" VALUE="fixed_point"/>
-        <PARAMETER NAME="implementation_options" VALUE="automatically_select"/>
+        <PARAMETER NAME="implementation_options" VALUE="pipelined_streaming_io"/>
         <PARAMETER NAME="input_width" VALUE="16"/>
         <PARAMETER NAME="memory_options_data" VALUE="block_ram"/>
         <PARAMETER NAME="memory_options_hybrid" VALUE="false"/>
         <PARAMETER NAME="memory_options_phase_factors" VALUE="block_ram"/>
         <PARAMETER NAME="memory_options_reorder" VALUE="block_ram"/>
-        <PARAMETER NAME="number_of_stages_using_block_ram_for_data_and_phase_factors" VALUE="0"/>
+        <PARAMETER NAME="number_of_stages_using_block_ram_for_data_and_phase_factors" VALUE="1"/>
         <PARAMETER NAME="output_ordering" VALUE="natural_order"/>
         <PARAMETER NAME="ovflo" VALUE="false"/>
         <PARAMETER NAME="phase_factor_width" VALUE="16"/>

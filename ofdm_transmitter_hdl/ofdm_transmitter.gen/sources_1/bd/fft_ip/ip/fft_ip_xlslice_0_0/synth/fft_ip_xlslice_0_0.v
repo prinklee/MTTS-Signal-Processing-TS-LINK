@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "xlslice_v1_0_5_xlslice,Vivado 2025.1" *)
 (* CHECK_LICENSE_TYPE = "fft_ip_xlslice_0_0,xlslice_v1_0_5_xlslice,{}" *)
-(* CORE_GENERATION_INFO = "fft_ip_xlslice_0_0,xlslice_v1_0_5_xlslice,{x_ipProduct=Vivado 2025.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=xlslice,x_ipVersion=1.0,x_ipCoreRevision=5,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DIN_WIDTH=32,DIN_FROM=31,DIN_TO=16}" *)
+(* CORE_GENERATION_INFO = "fft_ip_xlslice_0_0,xlslice_v1_0_5_xlslice,{x_ipProduct=Vivado 2025.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=xlslice,x_ipVersion=1.0,x_ipCoreRevision=5,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DIN_WIDTH=32,DIN_FROM=15,DIN_TO=0}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module fft_ip_xlslice_0_0 (
   Din,
@@ -64,8 +64,8 @@ output wire [15 : 0] Dout;
 
   xlslice_v1_0_5_xlslice #(
     .DIN_WIDTH(32),
-    .DIN_FROM(31),
-    .DIN_TO(16)
+    .DIN_FROM(15),
+    .DIN_TO(0)
   ) inst (
     .Din(Din),
     .Dout(Dout)
