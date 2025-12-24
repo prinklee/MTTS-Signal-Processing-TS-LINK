@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def ofdm_transmitter(bits=None, N=64, cp_length=16, modulation='16QAM', num_symbol = 1):
+def ofdm_transmitter(bits=None, N=64, cp_length=16, modulation='16QAM', num_symbol=1, interp=20):
     # print(f"\n=== OFDM Transmitter Start ===")
     # print(f"Parameters -> Modulation: {modulation}, Subcarriers: {N}, CP: {cp_length}")
 
@@ -30,6 +30,7 @@ def ofdm_transmitter(bits=None, N=64, cp_length=16, modulation='16QAM', num_symb
     tx_signal = parallel_to_serial(symbols_with_cp)
     # print(f"[5] Serialized | Length: {len(tx_signal)}")
     # print("=== OFDM Transmitter Complete ===\n")
+    upsampled_tx_signal = upsampling(tx_signal, interp)
 
     # plot_constellation(symbols, modulation)
 
@@ -85,12 +86,11 @@ def signal_mapper(parallel_bits, modulation):
         symbols = 1 - 2 * parallel_bits.astype(float)
 
     elif modulation == '16QAM':
-        # 16QAM mapping
         mapping_table = {
-            (0,0,0,0): -3-3j, (0,0,0,1): -3-1j, (0,0,1,0): -3+3j, (0,0,1,1): -3+1j,
-            (0,1,0,0): -1-3j, (0,1,0,1): -1-1j, (0,1,1,0): -1+3j, (0,1,1,1): -1+1j,
-            (1,1,0,0):  1-3j, (1,1,0,1):  1-1j, (1,1,1,0):  1+3j, (1,1,1,1):  1+1j,
-            (1,0,0,0):  3-3j, (1,0,0,1):  3-1j, (1,0,1,0):  3+3j, (1,0,1,1):  3+1j
+            (0,0,0,0): -3-3j, (0,0,0,1): -3-1j, (0,0,1,1): -3+1j, (0,0,1,0): -3+3j,  
+            (0,1,0,0): -1-3j, (0,1,0,1): -1-1j, (0,1,1,1): -1+1j, (0,1,1,0): -1+3j,
+            (1,1,0,0):  1-3j, (1,1,0,1):  1-1j, (1,1,1,1):  1+1j, (1,1,1,0):  1+3j,
+            (1,0,0,0):  3-3j, (1,0,0,1):  3-1j, (1,0,1,1):  3+1j, (1,0,1,0):  3+3j
         }
 
         # reshape into groups of 4 bits per subcarrier
@@ -99,14 +99,29 @@ def signal_mapper(parallel_bits, modulation):
         symbols = mapped.reshape(parallel_bits.shape[0], -1)    #reshapes back to the number of OFDM symbols as num of rows
 
         # Normalize average power to 1
-        # symbols /= np.sqrt(10)
+        symbols /= np.sqrt(10)
+        
+    elif modulation == '64QAM':
+        mapping_table = {
+            (0,0,0,0,0,0): -7-7j, (0,0,0,0,0,1): -7-5j, (0,0,0,0,1,1): -7-3j, (0,0,0,0,1,0): -7-1j, (0,0,0,1,1,0): -7+1j, (0,0,0,1,1,1): -7+3j, (0,0,0,1,0,1): -7+5j, (0,0,0,1,0,0): -7+7j,
+            (0,0,1,0,0,0): -5-7j, (0,0,1,0,0,1): -5-5j, (0,0,1,0,1,1): -5-3j, (0,0,1,0,1,0): -5-1j, (0,0,1,1,1,0): -5+1j, (0,0,1,1,1,1): -5+3j, (0,0,1,1,0,1): -5+5j, (0,0,1,1,0,0): -5+7j,
+            (0,1,1,0,0,0): -3-7j, (0,1,1,0,0,1): -3-5j, (0,1,1,0,1,1): -3-3j, (0,1,1,0,1,0): -3-1j, (0,1,1,1,1,0): -3+1j, (0,1,1,1,1,1): -3+3j, (0,1,1,1,0,1): -3+5j, (0,1,1,1,0,0): -3+7j,
+            (0,1,0,0,0,0): -1-7j, (0,1,0,0,0,1): -1-5j, (0,1,0,0,1,1): -1-3j, (0,1,0,0,1,0): -1-1j, (0,1,0,1,1,0): -1+1j, (0,1,0,1,1,1): -1+3j, (0,1,0,1,0,1): -1+5j, (0,1,0,1,0,0): -1+7j,
+            (1,1,0,0,0,0):  1-7j, (1,1,0,0,0,1):  1-5j, (1,1,0,0,1,1):  1-3j, (1,1,0,0,1,0):  1-1j, (1,1,0,1,1,0):  1+1j, (1,1,0,1,1,1):  1+3j, (1,1,0,1,0,1):  1+5j, (1,1,0,1,0,0):  1+7j,
+            (1,1,1,0,0,0):  3-7j, (1,1,1,0,0,1):  3-5j, (1,1,1,0,1,1):  3-3j, (1,1,1,0,1,0):  3-1j, (1,1,1,1,1,0):  3+1j, (1,1,1,1,1,1):  3+3j, (1,1,1,1,0,1):  3+5j, (1,1,1,1,0,0):  3+7j,
+            (1,0,1,0,0,0):  5-7j, (1,0,1,0,0,1):  5-5j, (1,0,1,0,1,1):  5-3j, (1,0,1,0,1,0):  5-1j, (1,0,1,1,1,0):  5+1j, (1,0,1,1,1,1):  5+3j, (1,0,1,1,0,1):  5+5j, (1,0,1,1,0,0):  5+7j,
+            (1,0,0,0,0,0):  7-7j, (1,0,0,0,0,1):  7-5j, (1,0,0,0,1,1):  7-3j, (1,0,0,0,1,0):  7-1j, (1,0,0,1,1,0):  7+1j, (1,0,0,1,1,1):  7+3j, (1,0,0,1,0,1):  7+5j, (1,0,0,1,0,0):  7+7j
+        }
+        
+        # reshape into groups of 6 bits per subcarrier
+        bit_groups = parallel_bits.reshape(-1, 6)        # group into X groups of 6 bits
+        mapped = np.array([mapping_table[tuple(b)] for b in bit_groups])   #changes to complex symbol
+        symbols = mapped.reshape(parallel_bits.shape[0], -1)    #reshapes back to the number of OFDM symbols as num of rows
+
+        # Normalize average power to 1
+        symbols /= np.sqrt(42)
+
     return symbols
-
-
-    #add 64 QAM
-    
-    return symbols
-
 
 def ifft_processor(symbols, N):
     """
@@ -137,6 +152,10 @@ def parallel_to_serial(blocks_with_cp):
 
     return tx_signal
 
+def upsampling(discrete_tx_signal, interp):
+    y = np.zeros((len(discrete_tx_signal)-1)*interp + 1, dtype=complex)
+    y[::interp] = discrete_tx_signal
+    return y
 
 def plot_constellation(symbols, modulation):
     plt.figure(figsize=(6, 6))
@@ -151,7 +170,9 @@ def plot_constellation(symbols, modulation):
 
 # Testing
 if __name__ == "__main__":
-    tx = ofdm_transmitter(bits=np.ones(64), N=64, cp_length=16, modulation='QPSK')
+    tx = ofdm_transmitter(np.random.randint(0, 2, 1000), N=256, cp_length=16, modulation='QPSK')
+    print(max(np.real(tx)))
+    print(max(np.imag(tx)))
     plt.figure() 
     plt.plot(np.real(tx))
     plt.figure()
