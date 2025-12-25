@@ -17,9 +17,6 @@ vlib activehdl/floating_point_v7_1_20
 vlib activehdl/cmpy_v6_0_26
 vlib activehdl/xfft_v9_1_14
 vlib activehdl/xil_defaultlib
-vlib activehdl/xlconcat_v2_1_7
-vlib activehdl/xlslice_v1_0_5
-vlib activehdl/xlconstant_v1_1_10
 
 vmap xpm activehdl/xpm
 vmap xbip_utils_v3_0_14 activehdl/xbip_utils_v3_0_14
@@ -34,11 +31,8 @@ vmap floating_point_v7_1_20 activehdl/floating_point_v7_1_20
 vmap cmpy_v6_0_26 activehdl/cmpy_v6_0_26
 vmap xfft_v9_1_14 activehdl/xfft_v9_1_14
 vmap xil_defaultlib activehdl/xil_defaultlib
-vmap xlconcat_v2_1_7 activehdl/xlconcat_v2_1_7
-vmap xlslice_v1_0_5 activehdl/xlslice_v1_0_5
-vmap xlconstant_v1_1_10 activehdl/xlconstant_v1_1_10
 
-vlog -work xpm  -sv2k12 "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" -l xpm -l xbip_utils_v3_0_14 -l axi_utils_v2_0_10 -l c_reg_fd_v12_0_10 -l xbip_dsp48_wrapper_v3_0_7 -l xbip_pipe_v3_0_10 -l c_addsub_v12_0_20 -l c_shift_ram_v12_0_19 -l mult_gen_v12_0_23 -l floating_point_v7_1_20 -l cmpy_v6_0_26 -l xfft_v9_1_14 -l xil_defaultlib -l xlconcat_v2_1_7 -l xlslice_v1_0_5 -l xlconstant_v1_1_10 \
+vlog -work xpm  -sv2k12 "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" -l xpm -l xbip_utils_v3_0_14 -l axi_utils_v2_0_10 -l c_reg_fd_v12_0_10 -l xbip_dsp48_wrapper_v3_0_7 -l xbip_pipe_v3_0_10 -l c_addsub_v12_0_20 -l c_shift_ram_v12_0_19 -l mult_gen_v12_0_23 -l floating_point_v7_1_20 -l cmpy_v6_0_26 -l xfft_v9_1_14 -l xil_defaultlib \
 "C:/Xilinx/2025.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv" \
 
 vcom -work xpm -93  \
@@ -83,26 +77,9 @@ vcom -work xfft_v9_1_14 -93  \
 vcom -work xil_defaultlib -93  \
 "../../../bd/fft_ip/ip/fft_ip_xfft_0_0/sim/fft_ip_xfft_0_0.vhd" \
 
-vlog -work xlconcat_v2_1_7  -v2k5 "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" -l xpm -l xbip_utils_v3_0_14 -l axi_utils_v2_0_10 -l c_reg_fd_v12_0_10 -l xbip_dsp48_wrapper_v3_0_7 -l xbip_pipe_v3_0_10 -l c_addsub_v12_0_20 -l c_shift_ram_v12_0_19 -l mult_gen_v12_0_23 -l floating_point_v7_1_20 -l cmpy_v6_0_26 -l xfft_v9_1_14 -l xil_defaultlib -l xlconcat_v2_1_7 -l xlslice_v1_0_5 -l xlconstant_v1_1_10 \
-"../../../../ofdm_transmitter.gen/sources_1/bd/fft_ip/ipshared/9c1a/hdl/xlconcat_v2_1_vl_rfs.v" \
-
-vlog -work xil_defaultlib  -v2k5 "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" -l xpm -l xbip_utils_v3_0_14 -l axi_utils_v2_0_10 -l c_reg_fd_v12_0_10 -l xbip_dsp48_wrapper_v3_0_7 -l xbip_pipe_v3_0_10 -l c_addsub_v12_0_20 -l c_shift_ram_v12_0_19 -l mult_gen_v12_0_23 -l floating_point_v7_1_20 -l cmpy_v6_0_26 -l xfft_v9_1_14 -l xil_defaultlib -l xlconcat_v2_1_7 -l xlslice_v1_0_5 -l xlconstant_v1_1_10 \
-"../../../bd/fft_ip/ip/fft_ip_xlconcat_0_0/sim/fft_ip_xlconcat_0_0.v" \
-
-vlog -work xlslice_v1_0_5  -v2k5 "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" -l xpm -l xbip_utils_v3_0_14 -l axi_utils_v2_0_10 -l c_reg_fd_v12_0_10 -l xbip_dsp48_wrapper_v3_0_7 -l xbip_pipe_v3_0_10 -l c_addsub_v12_0_20 -l c_shift_ram_v12_0_19 -l mult_gen_v12_0_23 -l floating_point_v7_1_20 -l cmpy_v6_0_26 -l xfft_v9_1_14 -l xil_defaultlib -l xlconcat_v2_1_7 -l xlslice_v1_0_5 -l xlconstant_v1_1_10 \
-"../../../../ofdm_transmitter.gen/sources_1/bd/fft_ip/ipshared/6792/hdl/xlslice_v1_0_vl_rfs.v" \
-
-vlog -work xil_defaultlib  -v2k5 "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" -l xpm -l xbip_utils_v3_0_14 -l axi_utils_v2_0_10 -l c_reg_fd_v12_0_10 -l xbip_dsp48_wrapper_v3_0_7 -l xbip_pipe_v3_0_10 -l c_addsub_v12_0_20 -l c_shift_ram_v12_0_19 -l mult_gen_v12_0_23 -l floating_point_v7_1_20 -l cmpy_v6_0_26 -l xfft_v9_1_14 -l xil_defaultlib -l xlconcat_v2_1_7 -l xlslice_v1_0_5 -l xlconstant_v1_1_10 \
-"../../../bd/fft_ip/ip/fft_ip_xlslice_0_0/sim/fft_ip_xlslice_0_0.v" \
-"../../../bd/fft_ip/ip/fft_ip_xlslice_1_0/sim/fft_ip_xlslice_1_0.v" \
-
-vlog -work xlconstant_v1_1_10  -v2k5 "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" -l xpm -l xbip_utils_v3_0_14 -l axi_utils_v2_0_10 -l c_reg_fd_v12_0_10 -l xbip_dsp48_wrapper_v3_0_7 -l xbip_pipe_v3_0_10 -l c_addsub_v12_0_20 -l c_shift_ram_v12_0_19 -l mult_gen_v12_0_23 -l floating_point_v7_1_20 -l cmpy_v6_0_26 -l xfft_v9_1_14 -l xil_defaultlib -l xlconcat_v2_1_7 -l xlslice_v1_0_5 -l xlconstant_v1_1_10 \
-"../../../../ofdm_transmitter.gen/sources_1/bd/fft_ip/ipshared/a165/hdl/xlconstant_v1_1_vl_rfs.v" \
-
-vlog -work xil_defaultlib  -v2k5 "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" -l xpm -l xbip_utils_v3_0_14 -l axi_utils_v2_0_10 -l c_reg_fd_v12_0_10 -l xbip_dsp48_wrapper_v3_0_7 -l xbip_pipe_v3_0_10 -l c_addsub_v12_0_20 -l c_shift_ram_v12_0_19 -l mult_gen_v12_0_23 -l floating_point_v7_1_20 -l cmpy_v6_0_26 -l xfft_v9_1_14 -l xil_defaultlib -l xlconcat_v2_1_7 -l xlslice_v1_0_5 -l xlconstant_v1_1_10 \
-"../../../bd/fft_ip/ip/fft_ip_xlconstant_0_0/sim/fft_ip_xlconstant_0_0.v" \
-"../../../bd/fft_ip/ip/fft_ip_xlconstant_1_0/sim/fft_ip_xlconstant_1_0.v" \
+vlog -work xil_defaultlib  -v2k5 "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" -l xpm -l xbip_utils_v3_0_14 -l axi_utils_v2_0_10 -l c_reg_fd_v12_0_10 -l xbip_dsp48_wrapper_v3_0_7 -l xbip_pipe_v3_0_10 -l c_addsub_v12_0_20 -l c_shift_ram_v12_0_19 -l mult_gen_v12_0_23 -l floating_point_v7_1_20 -l cmpy_v6_0_26 -l xfft_v9_1_14 -l xil_defaultlib \
 "../../../bd/fft_ip/sim/fft_ip.v" \
+
 
 vlog -work xil_defaultlib \
 "glbl.v"

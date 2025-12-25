@@ -13,13 +13,5 @@ cmpy_v6_0_vh_rfs.vhd,vhdl,cmpy_v6_0_26,../../../../ofdm_transmitter.gen/sources_
 xfft_v9_1_vh08_rfs.vhd,vhdl 2008,xfft_v9_1_14,../../../../ofdm_transmitter.gen/sources_1/bd/fft_ip/ipshared/7b99/hdl/xfft_v9_1_vh08_rfs.vhd,incdir="../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
 xfft_v9_1_vh_rfs.vhd,vhdl,xfft_v9_1_14,../../../../ofdm_transmitter.gen/sources_1/bd/fft_ip/ipshared/7b99/hdl/xfft_v9_1_vh_rfs.vhd,incdir="../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
 fft_ip_xfft_0_0.vhd,vhdl,xil_defaultlib,../../../bd/fft_ip/ip/fft_ip_xfft_0_0/sim/fft_ip_xfft_0_0.vhd,incdir="../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
-xlconcat_v2_1_vl_rfs.v,verilog,xlconcat_v2_1_7,../../../../ofdm_transmitter.gen/sources_1/bd/fft_ip/ipshared/9c1a/hdl/xlconcat_v2_1_vl_rfs.v,incdir="../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
-fft_ip_xlconcat_0_0.v,verilog,xil_defaultlib,../../../bd/fft_ip/ip/fft_ip_xlconcat_0_0/sim/fft_ip_xlconcat_0_0.v,incdir="../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
-xlslice_v1_0_vl_rfs.v,verilog,xlslice_v1_0_5,../../../../ofdm_transmitter.gen/sources_1/bd/fft_ip/ipshared/6792/hdl/xlslice_v1_0_vl_rfs.v,incdir="../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
-fft_ip_xlslice_0_0.v,verilog,xil_defaultlib,../../../bd/fft_ip/ip/fft_ip_xlslice_0_0/sim/fft_ip_xlslice_0_0.v,incdir="../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
-fft_ip_xlslice_1_0.v,verilog,xil_defaultlib,../../../bd/fft_ip/ip/fft_ip_xlslice_1_0/sim/fft_ip_xlslice_1_0.v,incdir="../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
-xlconstant_v1_1_vl_rfs.v,verilog,xlconstant_v1_1_10,../../../../ofdm_transmitter.gen/sources_1/bd/fft_ip/ipshared/a165/hdl/xlconstant_v1_1_vl_rfs.v,incdir="../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
-fft_ip_xlconstant_0_0.v,verilog,xil_defaultlib,../../../bd/fft_ip/ip/fft_ip_xlconstant_0_0/sim/fft_ip_xlconstant_0_0.v,incdir="../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
-fft_ip_xlconstant_1_0.v,verilog,xil_defaultlib,../../../bd/fft_ip/ip/fft_ip_xlconstant_1_0/sim/fft_ip_xlconstant_1_0.v,incdir="../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
 fft_ip.v,verilog,xil_defaultlib,../../../bd/fft_ip/sim/fft_ip.v,incdir="../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
 glbl.v,Verilog,xil_defaultlib,glbl.v

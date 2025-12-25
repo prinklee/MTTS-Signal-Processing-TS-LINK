@@ -1,0 +1,2 @@
+sym1_bram.v,verilog,xil_defaultlib,../../../../ofdm_transmitter.gen/sources_1/ip/sym1_bram/sim/sym1_bram.v,incdir="../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
+glbl.v,Verilog,xil_defaultlib,glbl.v
