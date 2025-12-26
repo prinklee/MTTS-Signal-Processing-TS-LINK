@@ -41,4 +41,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log fft_ip_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source fft_ip_wrapper.tcl
+EAStep vivado -log top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl

@@ -14,9 +14,6 @@ vlib questa_lib/msim/floating_point_v7_1_20
 vlib questa_lib/msim/cmpy_v6_0_26
 vlib questa_lib/msim/xfft_v9_1_14
 vlib questa_lib/msim/xil_defaultlib
-vlib questa_lib/msim/xlconcat_v2_1_7
-vlib questa_lib/msim/xlslice_v1_0_5
-vlib questa_lib/msim/xlconstant_v1_1_10
 
 vmap xpm questa_lib/msim/xpm
 vmap xbip_utils_v3_0_14 questa_lib/msim/xbip_utils_v3_0_14
@@ -31,9 +28,6 @@ vmap floating_point_v7_1_20 questa_lib/msim/floating_point_v7_1_20
 vmap cmpy_v6_0_26 questa_lib/msim/cmpy_v6_0_26
 vmap xfft_v9_1_14 questa_lib/msim/xfft_v9_1_14
 vmap xil_defaultlib questa_lib/msim/xil_defaultlib
-vmap xlconcat_v2_1_7 questa_lib/msim/xlconcat_v2_1_7
-vmap xlslice_v1_0_5 questa_lib/msim/xlslice_v1_0_5
-vmap xlconstant_v1_1_10 questa_lib/msim/xlconstant_v1_1_10
 
 vlog -work xpm  -incr -mfcu  -sv "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
 "C:/Xilinx/2025.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv" \
@@ -80,26 +74,9 @@ vcom -work xfft_v9_1_14  -93  \
 vcom -work xil_defaultlib  -93  \
 "../../../bd/fft_ip/ip/fft_ip_xfft_0_0/sim/fft_ip_xfft_0_0.vhd" \
 
-vlog -work xlconcat_v2_1_7  -incr -mfcu  "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
-"../../../../ofdm_transmitter.gen/sources_1/bd/fft_ip/ipshared/9c1a/hdl/xlconcat_v2_1_vl_rfs.v" \
-
 vlog -work xil_defaultlib  -incr -mfcu  "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
-"../../../bd/fft_ip/ip/fft_ip_xlconcat_0_0/sim/fft_ip_xlconcat_0_0.v" \
-
-vlog -work xlslice_v1_0_5  -incr -mfcu  "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
-"../../../../ofdm_transmitter.gen/sources_1/bd/fft_ip/ipshared/6792/hdl/xlslice_v1_0_vl_rfs.v" \
-
-vlog -work xil_defaultlib  -incr -mfcu  "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
-"../../../bd/fft_ip/ip/fft_ip_xlslice_0_0/sim/fft_ip_xlslice_0_0.v" \
-"../../../bd/fft_ip/ip/fft_ip_xlslice_1_0/sim/fft_ip_xlslice_1_0.v" \
-
-vlog -work xlconstant_v1_1_10  -incr -mfcu  "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
-"../../../../ofdm_transmitter.gen/sources_1/bd/fft_ip/ipshared/a165/hdl/xlconstant_v1_1_vl_rfs.v" \
-
-vlog -work xil_defaultlib  -incr -mfcu  "+incdir+../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
-"../../../bd/fft_ip/ip/fft_ip_xlconstant_0_0/sim/fft_ip_xlconstant_0_0.v" \
-"../../../bd/fft_ip/ip/fft_ip_xlconstant_1_0/sim/fft_ip_xlconstant_1_0.v" \
 "../../../bd/fft_ip/sim/fft_ip.v" \
+
 
 vlog -work xil_defaultlib \
 "glbl.v"

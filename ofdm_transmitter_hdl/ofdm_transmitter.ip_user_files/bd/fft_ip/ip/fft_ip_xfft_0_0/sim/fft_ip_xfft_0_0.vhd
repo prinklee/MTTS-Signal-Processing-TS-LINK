@@ -59,6 +59,7 @@ USE xfft_v9_1_14.xfft_v9_1_14;
 ENTITY fft_ip_xfft_0_0 IS
   PORT (
     aclk : IN STD_LOGIC;
+    aresetn : IN STD_LOGIC;
     s_axis_config_tdata : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     s_axis_config_tvalid : IN STD_LOGIC;
     s_axis_config_tready : OUT STD_LOGIC;
@@ -156,6 +157,9 @@ ARCHITECTURE fft_ip_xfft_0_0_arch OF fft_ip_xfft_0_0 IS
   ATTRIBUTE X_INTERFACE_INFO OF aclk: SIGNAL IS "xilinx.com:signal:clock:1.0 aclk_intf CLK";
   ATTRIBUTE X_INTERFACE_MODE OF aclk: SIGNAL IS "slave aclk_intf";
   ATTRIBUTE X_INTERFACE_PARAMETER OF aclk: SIGNAL IS "XIL_INTERFACENAME aclk_intf, ASSOCIATED_BUSIF S_AXIS_CONFIG:M_AXIS_DATA:M_AXIS_STATUS:S_AXIS_DATA, ASSOCIATED_RESET aresetn, ASSOCIATED_CLKEN aclken, FREQ_HZ 200000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN fft_ip_clk, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_INFO OF aresetn: SIGNAL IS "xilinx.com:signal:reset:1.0 aresetn_intf RST";
+  ATTRIBUTE X_INTERFACE_MODE OF aresetn: SIGNAL IS "slave aresetn_intf";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF aresetn: SIGNAL IS "XIL_INTERFACENAME aresetn_intf, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF event_data_in_channel_halt: SIGNAL IS "xilinx.com:signal:interrupt:1.0 event_data_in_channel_halt_intf INTERRUPT";
   ATTRIBUTE X_INTERFACE_MODE OF event_data_in_channel_halt: SIGNAL IS "master event_data_in_channel_halt_intf";
   ATTRIBUTE X_INTERFACE_PARAMETER OF event_data_in_channel_halt: SIGNAL IS "XIL_INTERFACENAME event_data_in_channel_halt_intf, SENSITIVITY EDGE_RISING, PortWidth 1";
@@ -231,7 +235,7 @@ BEGIN
       C_HAS_BFP => 0,
       C_HAS_ROUNDING => 0,
       C_HAS_ACLKEN => 0,
-      C_HAS_ARESETN => 0,
+      C_HAS_ARESETN => 1,
       C_HAS_OVFLO => 0,
       C_HAS_NATURAL_INPUT => 1,
       C_HAS_NATURAL_OUTPUT => 1,
@@ -251,7 +255,7 @@ BEGIN
     PORT MAP (
       aclk => aclk,
       aclken => '1',
-      aresetn => '1',
+      aresetn => aresetn,
       s_axis_config_tdata => s_axis_config_tdata,
       s_axis_config_tvalid => s_axis_config_tvalid,
       s_axis_config_tready => s_axis_config_tready,

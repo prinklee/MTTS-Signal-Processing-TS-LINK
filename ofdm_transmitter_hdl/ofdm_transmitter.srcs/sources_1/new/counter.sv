@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -29,7 +30,7 @@ module counter#(SIZE = 4) (
     logic [SIZE-1:0] next_c; 
     logic flag; 
 
-    always_ff @( posedge clk, negedge n_rst ) begin  
+    always_ff @( posedge clk) begin  
         if (!n_rst) begin 
             count_out <= 0;
             rollover_flag <= 0;  

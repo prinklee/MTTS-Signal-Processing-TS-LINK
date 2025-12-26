@@ -53,18 +53,18 @@ module tb_top(
     initial begin
         n_rst = 1'b1;
         data_ready = 1'b0;
-        size = 4'd2;
+        size = 4'd1;
         #1;
         
         n_rst = 1'b0;
-        @(negedge clk);
+        repeat (2) @(negedge clk);
         n_rst = 1'b1;
         
-        repeat (2) @(posedge clk);
+        repeat (20) @(posedge clk);
         
         data_ready = 1'b1;
         
-        @(negedge clk);
+        @(posedge clk);
         data_ready = 1'b0;
         
         repeat (2048) @(negedge clk);

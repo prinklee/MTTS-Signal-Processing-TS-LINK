@@ -32,13 +32,13 @@ module tb_mapper(
    
     logic data_ready;
     logic [15:0] imag_in, real_in; 
-    logic t_last, t_valid; 
+    logic t_last, t_valid, t_ready; 
     logic [3:0] size;
     
     mapping dut(.clk(clk), .n_rst(n_rst), 
     .data_ready(data_ready), .size(size), 
     .imag_in(imag_in), .real_in(real_in),
-    .t_last(t_last), .t_valid(t_valid));
+    .t_last(t_last), .t_valid(t_valid), .t_ready(t_ready));
     
     
     initial begin
@@ -46,18 +46,26 @@ module tb_mapper(
         #1;
         n_rst = 1'b0;
         data_ready = 1'b0; 
-        size = 3'd2;
+        size = 3'd1;
+        t_ready = 1'b1; 
         repeat (2) @(negedge clk);
         
         n_rst = 1'b1;
         
-        @(posedge clk); 
+        repeat (10) @(posedge clk); 
         
         data_ready = 1'b1; 
         @(posedge clk);
         data_ready = 1'b0; 
         
-        repeat (1030) @(posedge clk);
+        repeat (255) @(posedge clk);
+        
+        t_ready = 1'b0; 
+        
+        repeat (3) @(posedge clk);
+        t_ready = 1'b1; 
+        
+        repeat(750) @(posedge clk); 
 
         $finish;
     end

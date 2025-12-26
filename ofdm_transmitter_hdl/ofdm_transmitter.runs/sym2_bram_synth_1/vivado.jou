@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Wed Dec 24 13:44:25 2025
+# Process ID         : 14908
+# Current directory  : C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/sym2_bram_synth_1
+# Command line       : vivado.exe -log sym2_bram.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source sym2_bram.tcl
+# Log file           : C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/sym2_bram_synth_1/sym2_bram.vds
+# Journal file       : C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/sym2_bram_synth_1\vivado.jou
+# Running On         : Laptop15
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : AMD Ryzen 7 PRO 7840U w/ Radeon 780M Graphics  
+# CPU Frequency      : 3294 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 32926 MB
+# Swap memory        : 2080 MB
+# Total Virtual      : 35007 MB
+# Available Virtual  : 14784 MB
+#-----------------------------------------------------------
+source sym2_bram.tcl -notrace

@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="5,123.200 ns"></ZoomStartTime>
-      <ZoomEndTime time="5,243.901 ns"></ZoomEndTime>
-      <Cursor1Time time="5,160.700 ns"></Cursor1Time>
+      <ZoomStartTime time="5,284.166 ns"></ZoomStartTime>
+      <ZoomEndTime time="8,879.167 ns"></ZoomEndTime>
+      <Cursor1Time time="10,205.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="184"></NameColumnWidth>
+      <NameColumnWidth column_width="154"></NameColumnWidth>
       <ValueColumnWidth column_width="90"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="11" />
+   <WVObjectSize size="12" />
    <wvobject fp_name="/tb_mapper/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -31,6 +31,10 @@
    <wvobject fp_name="/tb_mapper/data_ready" type="logic">
       <obj_property name="ElementShortName">data_ready</obj_property>
       <obj_property name="ObjectShortName">data_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_mapper/dut/t_ready" type="logic">
+      <obj_property name="ElementShortName">t_ready</obj_property>
+      <obj_property name="ObjectShortName">t_ready</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_mapper/real_in" type="array">
       <obj_property name="ElementShortName">real_in[15:0]</obj_property>
@@ -50,20 +54,20 @@
       <obj_property name="ElementShortName">t_valid</obj_property>
       <obj_property name="ObjectShortName">t_valid</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_mapper/dut/cnt/count_out" type="array">
-      <obj_property name="ElementShortName">count_out[9:0]</obj_property>
-      <obj_property name="ObjectShortName">count_out[9:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_mapper/dut/cstate" type="array">
       <obj_property name="ElementShortName">cstate[1:0]</obj_property>
       <obj_property name="ObjectShortName">cstate[1:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_mapper/dut/c_sym" type="array">
-      <obj_property name="ElementShortName">c_sym[3:0]</obj_property>
-      <obj_property name="ObjectShortName">c_sym[3:0]</obj_property>
+   <wvobject fp_name="/tb_mapper/dut/sym2_bits" type="array">
+      <obj_property name="ElementShortName">sym2_bits[1:0]</obj_property>
+      <obj_property name="ObjectShortName">sym2_bits[1:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_mapper/dut/message_memory" type="array">
-      <obj_property name="ElementShortName">message_memory[511:0]</obj_property>
-      <obj_property name="ObjectShortName">message_memory[511:0]</obj_property>
+   <wvobject fp_name="/tb_mapper/dut/count" type="array">
+      <obj_property name="ElementShortName">count[9:0]</obj_property>
+      <obj_property name="ObjectShortName">count[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_mapper/dut/msg_bits" type="array">
+      <obj_property name="ElementShortName">msg_bits[1:0]</obj_property>
+      <obj_property name="ObjectShortName">msg_bits[1:0]</obj_property>
    </wvobject>
 </wave_config>

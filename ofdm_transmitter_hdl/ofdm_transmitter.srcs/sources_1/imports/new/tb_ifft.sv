@@ -26,7 +26,7 @@ module tb_ifft(
     parameter CLK_PERIOD = 10;
     
     logic clk = 1'b0;
-
+    logic n_rst;
     // Correct clock toggle
     always #(CLK_PERIOD/2) clk = ~clk;
     
@@ -48,6 +48,7 @@ module tb_ifft(
   // =====================
   fft_ip_wrapper dut (
     .clk        (clk),
+    .n_rst(n_rst),
     .real_in    (real_in),
     .imag_in    (imag_in),
     .s_tvalid   (s_tvalid),
@@ -68,21 +69,27 @@ module tb_ifft(
   imag_in  = 0;
   s_tvalid = 0;
   s_tlast  = 0;
+  n_rst = 1'b1;
+  
+  @(negedge clk);
+  n_rst = 1'b0;
+  
+  repeat (4) @(posedge clk);
+  n_rst = 1'b1;
 
   // Let clock settle
-  repeat (10) @(posedge clk);
+  repeat (20) @(posedge clk);
 
   // ==========================
   // SEND 256 IFFT INPUT BINS
   // ==========================
   for (int k = 0; k < 256; k++) begin
-    @(posedge clk);
-
-    if (s_tready) begin
+      @(posedge clk);
+    //if (s_tready) begin
       s_tvalid = 1;
 
       // DC bin only
-      if (k == 0 || k == 254) begin
+      if (k == 4) begin
         real_in = 16'd8192;   // choose value divisible by 256
         imag_in = 16'd0;
       end
@@ -92,17 +99,17 @@ module tb_ifft(
       end
 
       s_tlast = (k == 255);
-    end
-    else begin
-      s_tvalid = 0; // respect backpressure
-      s_tlast  = 0;
-    end
+//    end
+//    else begin
+//      s_tvalid = 0; // respect backpressure
+//      s_tlast  = 0;
+//    end
   end
   
   for (int k = 0; k < 256; k++) begin
     @(posedge clk);
 
-    if (s_tready) begin
+//    if (s_tready) begin
       s_tvalid = 1;
 
       // DC bin only
@@ -116,11 +123,11 @@ module tb_ifft(
       end
 
       s_tlast = (k == 255);
-    end
-    else begin
-      s_tvalid = 0; // respect backpressure
-      s_tlast  = 0;
-    end
+//    end
+//    else begin
+//      s_tvalid = 0; // respect backpressure
+//      s_tlast  = 0;
+//    end
   end
 
   @(posedge clk);

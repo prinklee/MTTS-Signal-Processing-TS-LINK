@@ -1,0 +1,7 @@
+Running: xsim.dir/tb_mapper_func_impl/xsimk.exe -simmode gui -wdb tb_mapper_func_impl.wdb -simrunnum 0 -socket 59590
+Design successfully loaded
+Design Loading Memory Usage: 11132 KB (Peak: 11132 KB)
+Design Loading CPU Usage: 61 ms
+Simulation completed
+Simulation Memory Usage: 12060 KB (Peak: 12060 KB)
+Simulation CPU Usage: 936 ms

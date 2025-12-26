@@ -1,0 +1,9 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
+"tb_mapper_func_impl.v" \
+
+sv xil_defaultlib  --include "../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
+"../../../../../ofdm_transmitter.srcs/sim_1/new/tb_mapper.sv" \
+
+# Do not sort compile order
+nosort
