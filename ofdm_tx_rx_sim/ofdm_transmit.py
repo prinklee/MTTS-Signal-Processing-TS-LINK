@@ -6,7 +6,7 @@ def ofdm_transmitter(bits=None, N=64, cp_length=16, modulation='16QAM', num_symb
     # print(f"Parameters -> Modulation: {modulation}, Subcarriers: {N}, CP: {cp_length}")
 
     if bits is None:
-        bits_per_symbol = {'BPSK': 1, 'QPSK': 2, '16QAM': 4}[modulation]     #add '64QAM':6  bits per symbol
+        bits_per_symbol = {'BPSK': 1, 'QPSK': 2, '16QAM': 4, '64QAM': 6}[modulation]
         bits = np.random.randint(0, 2, bits_per_symbol * N * num_symbol)  # currently 10 OFDM symbols
         # print(f"Generated {len(bits)} random bits for {num_symbol} OFDM symbols")
 
@@ -30,9 +30,8 @@ def ofdm_transmitter(bits=None, N=64, cp_length=16, modulation='16QAM', num_symb
     tx_signal = parallel_to_serial(symbols_with_cp)
     # print(f"[5] Serialized | Length: {len(tx_signal)}")
     # print("=== OFDM Transmitter Complete ===\n")
-    upsampled_tx_signal = upsampling(tx_signal, interp)
-
-    # plot_constellation(symbols, modulation)
+    
+    plot_constellation(symbols, modulation)
 
     return tx_signal
 
@@ -41,13 +40,14 @@ def serial_to_parallel(bits, N, modulation):
     """
     BLOCK 1: Convert serial bit stream to parallel blocks
     """
-
     if modulation == 'QPSK':
         bits_per_ofdm_symbol = 2 * N  # 2 bits per subcarrier × N subcarriers
     elif modulation == 'BPSK':
         bits_per_ofdm_symbol = N      # 1 bit per subcarrier × N subcarriers
     elif modulation == '16QAM':
         bits_per_ofdm_symbol = 4 * N  # 4 bits per subcarrier × N subcarriers
+    elif modulation == '64QAM':
+        bits_per_ofdm_symbol = 6 * N
 
     # check if we have enough bits, pad if necessary
     remainder = len(bits) % bits_per_ofdm_symbol
@@ -123,6 +123,7 @@ def signal_mapper(parallel_bits, modulation):
 
     return symbols
 
+
 def ifft_processor(symbols, N):
     """
     BLOCK 3: Convert frequency symbols to time domain via IFFT
@@ -152,11 +153,6 @@ def parallel_to_serial(blocks_with_cp):
 
     return tx_signal
 
-def upsampling(discrete_tx_signal, interp):
-    y = np.zeros((len(discrete_tx_signal)-1)*interp + 1, dtype=complex)
-    y[::interp] = discrete_tx_signal
-    return y
-
 def plot_constellation(symbols, modulation):
     plt.figure(figsize=(6, 6))
     plt.scatter(np.real(symbols[0]), np.imag(symbols[0]), s=20, alpha=0.7)
@@ -170,7 +166,7 @@ def plot_constellation(symbols, modulation):
 
 # Testing
 if __name__ == "__main__":
-    tx = ofdm_transmitter(np.random.randint(0, 2, 1000), N=256, cp_length=16, modulation='QPSK')
+    tx = ofdm_transmitter(np.random.randint(0, 2, 100000), N=256, cp_length=16, modulation='64QAM')
     print(max(np.real(tx)))
     print(max(np.imag(tx)))
     plt.figure() 
