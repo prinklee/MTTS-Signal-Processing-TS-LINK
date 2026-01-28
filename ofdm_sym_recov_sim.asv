@@ -24,20 +24,24 @@ end
 
 function val = B(g, x1, x2, v, N)
     sum1 = 0;
-    sum2 = 0;
+    %sum2 = 0;
 
+    x1_shift = circshift(x1, -2*g);
+    x2_shift = circshift(x2, -2*g);
     for i = 1:2:2*N
-        sum1 = sum1 + conj(x1(mod((i+2*g),2*N)+1))*x2(mod((i+2*g),2*N)+1)*conj(v(i));
-        sum2 = sum2 + abs(x2(i))^2;
+        sum1 = sum1 + conj(v(i)) .* conj(x1_shift(i)) .* conj(x2_shift(i));
+        %sum2 = sum2 + abs(x2(i))^2;
     end
     numer = abs(sum1)^2;
-    denom = 2 * sum2^2;
+    %denom = 2 * sum2^2;
 
-    val = numer/denom;
-
+    %val = numer/denom;
+    val = numer;
     % val = sum(abs(angle(v .* circshift(x1,g) .* circshift(conj(x2),g))));
     
 end
+
+dbug = input('Debugging mode? [y/n]: ', 's');
 
 %% Parameters
 Fs = input("Enter sampling rate: ");
@@ -90,8 +94,7 @@ waveform = [ zeros(10*N, 1); tx; zeros(10*N, 1)];
 % transmitRepeat(plutoTx, waveform);
 
 % [rxData, timestamp] = capture(plutoRx,0.01,'Seconds');
-% release(plutoRx);
-
+% release(plutoRx)
 
 time = (1:length(tx))/Fs;
 df = input("Simulated delta frequency: ");
@@ -113,6 +116,9 @@ k = metric(i);
 while ~((metric(i-1)<metric(i)) && (metric(i+1)<metric(i)) && (metric(i)>0.9) && (metric(i)<1.1))
     i = i+1;
     k = metric(i);
+end
+if dbug == 'y'
+    i = 641;
 end
 
 fprintf('Symbol start time: %d (ms), %d index\n',1000 * i/Fs, i);
@@ -137,15 +143,18 @@ sym1_fft = fft(a_sym1);
 sym2_fft = fft(a_sym2);
 
 if dbug == 'y'
-    fprintf("sym1 orig FFT vs rx FFT\n");
-    [fft(sym1) sym1_fft]
-    fprintf("sym2 orig FFT vs rx FFT\n");
-    [fft(sym2) sym2_fft]
+    % fprintf("sym1 orig FFT vs rx FFT\n");
+    % disp([fft(sym1) sym1_fft])
+    % fprintf("sym2 orig FFT vs rx FFT\n");
+    % disp([fft(sym2) sym2_fft])
+
+    fprintf("v_coeffs vs sym2_fft*conj(sym1_fft)");
+    disp([v_coeff, sym2_fft .* conj(sym1_fft)]);
 end
 
 b_metric = zeros(2*N,1);
 
-for n = 0:2*N-1
+for n = 0:
     b_metric(n+1) = B(n,sym1_fft, sym2_fft, v_coeff, N);
 end
 

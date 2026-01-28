@@ -26,15 +26,17 @@ function val = B(g, x1, x2, v, N)
     sum1 = 0;
     sum2 = 0;
 
+    x1_shift = circshift(x1, -2*g);
+    x2_shift = circshift(x2, -2*g);
     for i = 1:2:2*N
-        sum1 = sum1 + conj(x1(mod((i+2*g),2*N)+1))*x2(mod((i+2*g),2*N)+1)*conj(v(i));
+        sum1 = sum1 + conj(v(i)) .* conj(x1_shift(i)) .* x2_shift(i);
         sum2 = sum2 + abs(x2(i))^2;
     end
     numer = abs(sum1)^2;
     denom = 2 * sum2^2;
 
     val = numer/denom;
-
+    %val = numer;
     % val = sum(abs(angle(v .* circshift(x1,g) .* circshift(conj(x2),g))));
     
 end
@@ -141,23 +143,26 @@ sym1_fft = fft(a_sym1);
 sym2_fft = fft(a_sym2);
 
 if dbug == 'y'
-    fprintf("sym1 orig FFT vs rx FFT\n");
-    disp([fft(sym1) sym1_fft])
-    fprintf("sym2 orig FFT vs rx FFT\n");
-    disp([fft(sym2) sym2_fft])
+    % fprintf("sym1 orig FFT vs rx FFT\n");
+    % disp([fft(sym1) sym1_fft])
+    % fprintf("sym2 orig FFT vs rx FFT\n");
+    % disp([fft(sym2) sym2_fft])
+
+    fprintf("v_coeffs vs sym2_fft*conj(sym1_fft)");
+    disp([v_coeff, sym2_fft .* conj(sym1_fft)]);
 end
 
-b_metric = zeros(2*N,1);
+b_metric = zeros(N,1);
 
-for n = 0:2*N-1
+for n = 0:N-1
     b_metric(n+1) = B(n,sym1_fft, sym2_fft, v_coeff, N);
 end
 
-[m, g] = min(b_metric);
+[m, g] = max(b_metric);
 
-b_sym1 = rx_sym1 .* exp(-j * 2 * pi * delta_f * (t(1:2*N)));
+b_sym1 = a_sym1 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(1:2*N)));
 
-b_sym2 = rx_sym2 .* exp(-j * 2 * pi * delta_f * (t(2*N+guard_l+1:4*N+guard_l)));
+b_sym2 = a_sym2 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(2*N+guard_l+1:4*N+guard_l)));
 
 phase = angle(mean(b_sym1./sym1));
 
