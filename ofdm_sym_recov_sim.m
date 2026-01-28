@@ -39,8 +39,10 @@ function val = B(g, x1, x2, v, N)
     
 end
 
+dbug = input('Debugging mode? [y/n]: ', 's');
+
 %% Parameters
-Fs = 4e5;
+Fs = input("Enter sampling rate: ");
 
 % plutoRx = sdrrx('Pluto', 'OutputDataType', 'double',  RadioID='usb:0');
 % plutoRx.CenterFrequency = 7e7;
@@ -87,19 +89,19 @@ tx = [sym1_e; sym2_e];
 
 waveform = [ zeros(10*N, 1); tx; zeros(10*N, 1)];
 
-disp('Transmitting and receiving...');
 % transmitRepeat(plutoTx, waveform);
 
 % [rxData, timestamp] = capture(plutoRx,0.01,'Seconds');
-% release(plutoRx);
+% release(plutoRx)
 
 time = (1:length(tx))/Fs;
-df = 0*Fs/(N)+2000;
-disp(df);
+df = input("Simulated delta frequency: ");
 
-p = 90;
+p = input("Simulated phase: ");
 rxData = waveform .* [ zeros(10*N, 1); exp(j*(2*pi*time*df + p)).'; zeros(10*N, 1)];
-disp('Reception complete.');
+
+fprintf('Transmitting and receiving...\n');
+fprintf('Reception complete.\n');
 
 metric = zeros(length(rxData),1);
 for i = 1:length(rxData)-2*N
@@ -113,6 +115,11 @@ while ~((metric(i-1)<metric(i)) && (metric(i+1)<metric(i)) && (metric(i)>0.9) &&
     i = i+1;
     k = metric(i);
 end
+if dbug == 'y'
+    i = 641;
+end
+
+fprintf('Symbol start time: %d (ms), %d index\n',1000 * i/Fs, i);
 
 % P(i, N, rxData)
 % phi = angle(P(i, N, rxData));
@@ -122,14 +129,23 @@ rx_sym1 = rxData(i:i+2*N-1);
 rx_sym2 = rxData(i+2*N+guard_l:i+4*N-1+guard_l);
 
 
-delta_f = mean(angle(rx_sym1(1:N)./rx_sym1(N+1:end)))/(2*pi*N)*Fs;
+delta_f = mean(angle(rx_sym1(N+1:end)./rx_sym1(1:N)))/(2*pi*N)*Fs;
 
-a_sym1 = rx_sym1 .* exp(j * 2 * pi * delta_f * t(1:2*N));
+fprintf("Fractional part of delta f: %d\n", delta_f)
 
-a_sym2 = rx_sym2 .* exp(j * 2 * pi * delta_f * t(2*N+guard_l+1:4*N+guard_l));
+a_sym1 = rx_sym1 .* exp(-j * 2 * pi * delta_f * t(1:2*N));
+
+a_sym2 = rx_sym2 .* exp(-j * 2 * pi * delta_f * t(2*N+guard_l+1:4*N+guard_l));
 
 sym1_fft = fft(a_sym1);
 sym2_fft = fft(a_sym2);
+
+if dbug == 'y'
+    fprintf("sym1 orig FFT vs rx FFT\n");
+    disp([fft(sym1) sym1_fft])
+    fprintf("sym2 orig FFT vs rx FFT\n");
+    disp([fft(sym2) sym2_fft])
+end
 
 b_metric = zeros(2*N,1);
 
@@ -139,9 +155,9 @@ end
 
 [m, g] = min(b_metric);
 
-b_sym1 = rx_sym1 .* exp(j * 2 * pi * delta_f * (t(1:2*N)));
+b_sym1 = rx_sym1 .* exp(-j * 2 * pi * delta_f * (t(1:2*N)));
 
-b_sym2 = rx_sym2 .* exp(j * 2 * pi * delta_f * (t(2*N+guard_l+1:4*N+guard_l)));
+b_sym2 = rx_sym2 .* exp(-j * 2 * pi * delta_f * (t(2*N+guard_l+1:4*N+guard_l)));
 
 phase = angle(mean(b_sym1./sym1));
 
