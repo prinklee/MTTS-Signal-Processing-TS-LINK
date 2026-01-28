@@ -94,11 +94,11 @@ disp('Transmitting and receiving...');
 % release(plutoRx);
 
 time = (1:length(tx))/Fs;
-df = 0*Fs/(N)+2000;
+df = 0*Fs/(N)+100;
 disp(df);
 
-p = 90;
-rxData = waveform .* [ zeros(10*N, 1); exp(j*(2*pi*time*df + p)).'; zeros(10*N, 1)];
+p = pi/4;
+rxData = waveform .* [ zeros(10*N, 1); exp(j*(2*pi*time*df + p))'; zeros(10*N, 1)];
 disp('Reception complete.');
 
 metric = zeros(length(rxData),1);
@@ -124,9 +124,9 @@ rx_sym2 = rxData(i+2*N+guard_l:i+4*N-1+guard_l);
 
 delta_f = mean(angle(rx_sym1(1:N)./rx_sym1(N+1:end)))/(2*pi*N)*Fs;
 
-a_sym1 = rx_sym1 .* exp(j * 2 * pi * delta_f * t(1:2*N));
+a_sym1 = rx_sym1 .* exp(-j * 2 * pi * delta_f * t(1:2*N));
 
-a_sym2 = rx_sym2 .* exp(j * 2 * pi * delta_f * t(2*N+guard_l+1:4*N+guard_l));
+a_sym2 = rx_sym2 .* exp(j * 2 * pi * de * t(2*N+guard_l+1:4*N+guard_l));
 
 sym1_fft = fft(a_sym1);
 sym2_fft = fft(a_sym2);

@@ -637,5 +637,3 @@ INFO: [VRFC 10-311] analyzing module fft_ip_mult_gen_v12_0_23_delay_line__parame
 INFO: [VRFC 10-311] analyzing module fft_ip_mult_gen_v12_0_23_delay_line__parameterized0_207
 INFO: [VRFC 10-311] analyzing module fft_ip_mult_gen_v12_0_23_delay_line__parameterized0_61
 INFO: [VRFC 10-311] analyzing module glbl
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sim_1/new/tb_top.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module tb_top

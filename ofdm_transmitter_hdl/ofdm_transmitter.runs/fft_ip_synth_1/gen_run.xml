@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="fft_ip_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1766624490">
-  <File Type="PA-TCL" Name="fft_ip.tcl"/>
   <File Type="REPORTS-TCL" Name="fft_ip_reports.tcl"/>
-  <File Type="RDS-RDS" Name="fft_ip.vds"/>
-  <File Type="RDS-PROPCONSTRS" Name="fft_ip_drc_synth.rpt"/>
   <File Type="RDS-UTIL" Name="fft_ip_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="fft_ip_utilization_synth.pb"/>
+  <File Type="PA-TCL" Name="fft_ip.tcl"/>
+  <File Type="RDS-RDS" Name="fft_ip.vds"/>
   <File Type="RDS-DCP" Name="fft_ip.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="fft_ip_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="fft_ip_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/fft_ip" RelGenDir="$PGENDIR/fft_ip">
     <File Path="$PSRCDIR/sources_1/bd/fft_ip/fft_ip.bd">
       <FileInfo>
@@ -54,9 +51,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>
