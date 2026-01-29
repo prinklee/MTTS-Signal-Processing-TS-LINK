@@ -8,10 +8,14 @@ function val = P(d, L, rx_sig)
 end
 
 function val = R(d, L, rx_sig)
-    val = 0;
+    sum1 = 0;
+    sum2 = 0; 
     for i = 1:L
-        val = val + abs(rx_sig(i + d + L-1))^2;
+        sum1 = sum1 + abs(rx_sig(i+d))^2;
+        sum2 = sum2 + abs(rx_sig(i+d+L))^2;
+        %val = val + abs(rx_sig(i + d + L-1))^2;
     end
+    val = sqrt(sum1) * sqrt(sum2);
 end
 
 function val = M(d, L, rx_sig)
@@ -36,7 +40,7 @@ function val = B(g, x1, x2, v, N)
     denom = 2 * sum2^2;
 
     val = numer/denom;
-    %val = numer;
+    % val = numer;
     % val = sum(abs(angle(v .* circshift(x1,g) .* circshift(conj(x2),g))));
     
 end
@@ -59,9 +63,9 @@ Fs = input("Enter sampling rate: ");
 % plutoTx.ShowAdvancedProperties = true;
 % plutoTx.FrequencyCorrection = 0;
 
-N = 64;
-T = 2*N;
-guard_l = 0;
+T = 256;
+N = T/2;
+prefix_len = 64; 
 
 qpsk_bits1 = randi([0,3], N, 1);
 even_coeffs = pskmod(qpsk_bits1, 4, pi/4);
@@ -83,9 +87,9 @@ v_coeff = sym2_coeffs(1:2*N) .* conj(coeffs);
 
 
 % add cyclic prefixing 
-sym1_e = [sym1];
-sym2_e = [sym2];
-% sym3_e = [sym3(end-guard_l+1:end); sym3];
+sym1_e = [sym1(end-prefix_len+1:end); sym1];
+sym2_e = [sym2(end-prefix_len+1:end); sym2];
+% sym3_e = [sym3(end-prefix_len+1:end); sym3];
 
 tx = [sym1_e; sym2_e];
 
@@ -100,7 +104,8 @@ time = (1:length(tx))/Fs;
 df = input("Simulated delta frequency: ");
 
 p = input("Simulated phase: ");
-rxData = waveform .* [ zeros(10*N, 1); exp(j*(2*pi*time*df + p)).'; zeros(10*N, 1)];
+snr = input("Signal-to-noise ratio (SNR) in dB: ");
+rxData = awgn(waveform .* [ zeros(10*N, 1); exp(j*(2*pi*time*df + p)).'; zeros(10*N, 1)], snr, 'measured');
 
 fprintf('Transmitting and receiving...\n');
 fprintf('Reception complete.\n');
@@ -111,14 +116,13 @@ for i = 1:length(rxData)-2*N
 end
 
 i = 2;
-k = metric(i);
 
-while ~((metric(i-1)<metric(i)) && (metric(i+1)<metric(i)) && (metric(i)>0.9) && (metric(i)<1.1))
+while (i < length(rxData)) && ~((metric(i-1)<=metric(i)) && (metric(i+1)<=metric(i)) && (metric(i)>=0.95) )
     i = i+1;
-    k = metric(i);
 end
+i = i + prefix_len;
 if dbug == 'y'
-    i = 641;
+    i = 10*N+1+prefix_len;
 end
 
 fprintf('Symbol start time: %d (ms), %d index\n',1000 * i/Fs, i);
@@ -128,7 +132,7 @@ fprintf('Symbol start time: %d (ms), %d index\n',1000 * i/Fs, i);
 t = (1:length(tx)).' /Fs; % Time vector for the received data
 
 rx_sym1 = rxData(i:i+2*N-1);
-rx_sym2 = rxData(i+2*N+guard_l:i+4*N-1+guard_l);
+rx_sym2 = rxData(i+2*N+prefix_len:i+4*N-1+prefix_len);
 
 
 delta_f = mean(angle(rx_sym1(N+1:end)./rx_sym1(1:N)))/(2*pi*N)*Fs;
@@ -137,7 +141,7 @@ fprintf("Fractional part of delta f: %d\n", delta_f)
 
 a_sym1 = rx_sym1 .* exp(-j * 2 * pi * delta_f * t(1:2*N));
 
-a_sym2 = rx_sym2 .* exp(-j * 2 * pi * delta_f * t(2*N+guard_l+1:4*N+guard_l));
+a_sym2 = rx_sym2 .* exp(-j * 2 * pi * delta_f * t(2*N+prefix_len+1:4*N+prefix_len));
 
 sym1_fft = fft(a_sym1);
 sym2_fft = fft(a_sym2);
@@ -148,8 +152,8 @@ if dbug == 'y'
     % fprintf("sym2 orig FFT vs rx FFT\n");
     % disp([fft(sym2) sym2_fft])
 
-    fprintf("v_coeffs vs sym2_fft*conj(sym1_fft)");
-    disp([v_coeff, sym2_fft .* conj(sym1_fft)]);
+    % fprintf("v_coeffs vs sym2_fft*conj(sym1_fft)\n");
+    % disp([v_coeff, sym2_fft .* conj(sym1_fft)]);
 end
 
 b_metric = zeros(N,1);
@@ -160,14 +164,13 @@ end
 
 [m, g] = max(b_metric);
 
-b_sym1 = a_sym1 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(1:2*N)));
+fprintf("g value: %d, integer part: %d\n", g, (g-1) * Fs/N);
+fprintf("Total calculated delta_f: %d\n", delta_f + (g-1)*Fs/N);
+fprintf("Percentage Error of frequency calculation: %d\n", (df - delta_f + (g-1)*Fs/N)/df);
 
-b_sym2 = a_sym2 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(2*N+guard_l+1:4*N+guard_l)));
+corrected_sym1 = a_sym1 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(1:2*N)));
 
-phase = angle(mean(b_sym1./sym1));
-
-corrected_sym1 = b_sym1 .* conj(exp(j * phase));
-corrected_sym2 = b_sym2 .* conj(exp(j * phase));
+corrected_sym2 = a_sym2 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(2*N+prefix_len+1:4*N+prefix_len)));
 
 rx_sym1_fft = fft(corrected_sym1);
 rx_sym2_fft = fft(corrected_sym2);
@@ -188,15 +191,17 @@ end
 
 figure;
 subplot(2,1,1);
-plot((1:4*N)/Fs, real(tx));
-xline(N/Fs, 'r');
-xline(2*N/Fs, 'r');
+plot((1:4*N+2*prefix_len)/Fs, real(tx));
+xline((prefix_len)/Fs, 'r');
+xline((N+prefix_len)/Fs, 'r');
+xline((2*N+prefix_len)/Fs, 'r');
 title("Transmitted Signal - In-Phase");
 
 subplot(2,1,2);
-plot((1:4*N)/Fs, imag(tx));
-xline(N/Fs, 'r');
-xline(2*N/Fs, 'r');
+plot((1:4*N+2*prefix_len)/Fs, imag(tx));
+xline((prefix_len)/Fs, 'r');
+xline((N+prefix_len)/Fs, 'r');
+xline((2*N+prefix_len)/Fs, 'r');
 xlabel('Time');
 title("Transmitted Signal - Quadrature");
 
@@ -212,6 +217,7 @@ figure;
 plot((1:length(rxData))/Fs,metric, '.');
 ylabel('Timing Metric M(d)');
 xlabel('Time');
+xline(i/Fs);
 ylim([0 1.5])
 title('Timing Metric');
 
@@ -232,7 +238,7 @@ subplot(2,1,1);
 title('Tx, Rx, and Corrected Signal - In-Phase');
 hold on;
 plot((1:4*N)/Fs, real([sym1; sym2]), 'r');
-plot((1:4*N)/Fs, real([rxData(i:i+4*N-1)]), 'g')
+plot((1:4*N)/Fs, real([rx_sym1; rx_sym2]), 'g')
 plot((1:4*N)/Fs, real([corrected_sym1; corrected_sym2]), 'b.', MarkerSize=5);
 ylim([-0.5 0.5]);
 xlabel('Time');
@@ -242,7 +248,7 @@ subplot(2,1,2);
 title('Tx, Rx, and Corrected Signal - Quadrature');
 hold on;
 plot((1:4*N)/Fs, imag([sym1; sym2]), 'r');
-plot((1:4*N)/Fs, imag([rxData(i:i+4*N-1)]), 'g')
+plot((1:4*N)/Fs, imag([rx_sym1; rx_sym2]), 'g')
 plot((1:4*N)/Fs, imag([corrected_sym1; corrected_sym2]), 'b.', MarkerSize=5);
 ylim([-0.5 0.5]);
 xlabel('Time');
