@@ -1,0 +1,269 @@
+%% README
+% Added a parameter 'plateau_metric' to help find 'i'. (Line 59)
+% Basically, 'metric' = 1 at the plateau. 'plateau_metric' the threshold in
+% which we take the index of the first sample the exceed said threshold. Said
+% index is then used to define as the estimated time offset.
+
+% If you take a look at Figure 5, you'll note that corrected signal =
+% transmitted signal for the quadrature component. I just put in a circular
+% shift -prefix_len long to highlight the indexing error. Can I bandaid fix
+% and just circshift the results when they are defined? Yes but technical
+% debt, so I leave it to be solved by parties more invested than I.
+
+%% Functions
+clear; clc; close all;
+
+function val = P(d, L, rx_sig)
+    val = 0;
+    for i = 1:L
+        val = val + conj(rx_sig(i + d-1)) * rx_sig(i + d + L-1);
+    end
+end
+
+function val = R(d, L, rx_sig)
+    sum1 = 0;
+    sum2 = 0; 
+    for i = 1:L
+        sum1 = sum1 + abs(rx_sig(i+d))^2;
+        sum2 = sum2 + abs(rx_sig(i+d+L))^2;
+        %val = val + abs(rx_sig(i + d + L-1))^2;
+    end
+    val = sqrt(sum1) * sqrt(sum2);
+end
+
+function val = M(d, L, rx_sig)
+    if (R(d, L, rx_sig))^2 == 0
+        val = 0;
+    else
+        val = abs(P(d, L, rx_sig))^2/(R(d, L, rx_sig))^2;
+    end
+end
+
+function val = B(g, x1, x2, v, N)
+    sum1 = 0;
+    sum2 = 0;
+
+    x1_shift = circshift(x1, -2*g);
+    x2_shift = circshift(x2, -2*g);
+    for i = 1:2:2*N
+        sum1 = sum1 + conj(v(i)) .* conj(x1_shift(i)) .* x2_shift(i);
+        sum2 = sum2 + abs(x2(i))^2;
+    end
+    numer = abs(sum1)^2;
+    denom = 2 * sum2^2;
+
+    val = numer/denom;
+    % val = numer;
+    % val = sum(abs(angle(v .* circshift(x1,g) .* circshift(conj(x2),g))));
+    
+end
+
+dbug = input('Debugging mode? [y/n]: ', 's');
+
+%% Parameters
+plateau_metric = 0.99; % Varies between 0.8 anf 0.99. Use lower values with less SNR
+
+Fs = input("Enter sampling rate: ");
+
+% plutoRx = sdrrx('Pluto', 'OutputDataType', 'double',  RadioID='usb:0');
+% plutoRx.CenterFrequency = 7e7;
+% plutoRx.BasebandSampleRate = Fs;
+% plutoRx.ShowAdvancedProperties = true;
+% plutoRx.FrequencyCorrection = 0;
+% 
+% plutoTx = sdrtx('Pluto', RadioID='usb:0');
+% plutoTx.CenterFrequency = 7e7;
+% plutoTx.Gain = 0;
+% plutoTx.BasebandSampleRate = Fs;
+% plutoTx.ShowAdvancedProperties = true;
+% plutoTx.FrequencyCorrection = 0;
+
+T = 256;
+N = T/2;
+prefix_len = 64; 
+
+qpsk_bits1 = randi([0,3], N, 1);
+even_coeffs = pskmod(qpsk_bits1, 4, pi/4);
+
+coeffs = upsample(even_coeffs,2);
+
+sym1 = ifft(coeffs);
+
+qpsk_bits2 = randi([0,3], T, 1);
+sym2_coeffs = pskmod(qpsk_bits2, 4, pi/4)/sqrt(2);
+
+sym2 = ifft(sym2_coeffs);
+
+% data2 = randi([0,3], T, 1);
+% sym3_coeffs = pskmod(data, 4, pi/4);
+% sym3 = ifft(sym3_coeffs);
+
+v_coeff = sym2_coeffs(1:2*N) .* conj(coeffs);
+
+
+% add cyclic prefixing 
+sym1_e = [sym1(end-prefix_len+1:end); sym1];
+sym2_e = [sym2(end-prefix_len+1:end); sym2];
+% sym3_e = [sym3(end-prefix_len+1:end); sym3];
+
+tx = [sym1_e; sym2_e];
+
+waveform = [ zeros(10*N, 1); tx; zeros(10*N, 1)];
+
+% transmitRepeat(plutoTx, waveform);
+
+% [rxData, timestamp] = capture(plutoRx,0.01,'Seconds');
+% release(plutoRx)
+
+time = (1:length(tx))/Fs;
+df = input("Simulated delta frequency: ");
+
+p = input("Simulated phase: ");
+snr = input("Signal-to-noise ratio (SNR) in dB: ");
+rxData = awgn(waveform .* [ zeros(10*N, 1); exp(j*(2*pi*time*df + p)).'; zeros(10*N, 1)], snr, 'measured');
+
+fprintf('Transmitting and receiving...\n');
+fprintf('Reception complete.\n');
+
+metric = zeros(length(rxData),1);
+for i = 1:length(rxData)-2*N
+    metric(i) = M(i, N, rxData);
+end
+
+metric = min(metric, 1.01);
+i = find(metric > plateau_metric*max(metric), 1, 'first');
+disp(i);
+
+if dbug == 'y'
+    i = 10*N+1+prefix_len;
+end
+
+fprintf('Symbol start time: %d (ms), %d index\n',1000 * i/Fs, i);
+
+% P(i, N, rxData)
+% phi = angle(P(i, N, rxData));
+t = (1:length(tx)).' /Fs; % Time vector for the received data
+
+rx_sym1 = rxData(i:i+2*N-1);
+rx_sym2 = rxData(i+2*N+prefix_len:i+4*N-1+prefix_len);
+delta_f = mean(angle(rx_sym1(N+1:end)./rx_sym1(1:N)))/(2*pi*N)*Fs;
+
+fprintf("Fractional CFO (Hz): %.3f\n", delta_f)
+
+a_sym1 = rx_sym1 .* exp(-j * 2 * pi * delta_f * t(1:2*N));
+
+a_sym2 = rx_sym2 .* exp(-j * 2 * pi * delta_f * t(2*N+prefix_len+1:4*N+prefix_len));
+
+sym1_fft = fft(a_sym1);
+sym2_fft = fft(a_sym2);
+
+if dbug == 'y'
+    % fprintf("sym1 orig FFT vs rx FFT\n");
+    % disp([fft(sym1) sym1_fft])
+    % fprintf("sym2 orig FFT vs rx FFT\n");
+    % disp([fft(sym2) sym2_fft])
+
+    % fprintf("v_coeffs vs sym2_fft*conj(sym1_fft)\n");
+    % disp([v_coeff, sym2_fft .* conj(sym1_fft)]);
+end
+
+b_metric = zeros(N,1);
+
+for n = 0:N-1
+    b_metric(n+1) = B(n,sym1_fft, sym2_fft, v_coeff, N);
+end
+
+[m, g] = max(b_metric);
+
+fprintf("g value: %d, integer part: %d\n", g, (g-1) * Fs/N);
+fprintf("Total calculated delta_f: %d\n", delta_f + (g-1)*Fs/N);
+fprintf("Percentage Error of frequency calculation: %d\n", (df - delta_f + (g-1)*Fs/N)/df);
+
+corrected_sym1 = a_sym1 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(1:2*N)));
+
+corrected_sym2 = a_sym2 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(2*N+prefix_len+1:4*N+prefix_len)));
+
+rx_sym1_fft = fft(corrected_sym1);
+rx_sym2_fft = fft(corrected_sym2);
+
+rx_sym1_data = pskdemod(rx_sym1_fft, 4, pi/4);
+rx_sym2_data = pskdemod(rx_sym2_fft, 4, pi/4);
+
+sym1_errors = 0;
+sym2_errors = 0;
+
+orig_bits1 = upsample(qpsk_bits1,2);
+for n = 1:T
+    if (qpsk_bits2(n) ~= rx_sym2_data(n))
+        sym2_errors = sym2_errors + 1;
+    end
+end
+
+
+figure(1);
+subplot(2,1,1);
+plot((1:4*N+2*prefix_len)/Fs, real(tx));
+xline((prefix_len)/Fs, 'r');
+xline((N+prefix_len)/Fs, 'r');
+xline((2*N+prefix_len)/Fs, 'r');
+title("Transmitted Signal - In-Phase");
+
+subplot(2,1,2);
+plot((1:4*N+2*prefix_len)/Fs, imag(tx));
+xline((prefix_len)/Fs, 'r');
+xline((N+prefix_len)/Fs, 'r');
+xline((2*N+prefix_len)/Fs, 'r');
+xlabel('Time');
+title("Transmitted Signal - Quadrature");
+
+[acor, lag] = xcorr(rxData, 'normalized');
+acor_abs = abs(acor);
+
+figure(2);
+plot(acor_abs);
+xlabel('Array Length (n)')
+ylabel('Correlation')
+title('Symbol Recovery Results')
+
+figure(3);
+% plot((1:length(rxData))/Fs,metric, '.');
+plot(metric, '.');
+ylabel('Timing Metric M(d)');
+xlabel('Time');
+% xline(i/Fs);
+xline(i)
+ylim([0 1.5])
+title('Timing Metric');
+
+figure(4);
+subplot(2,1,1);
+plot((1:length(rxData))/Fs, real(rxData));
+title('Symbol Recovery Results - In-Phase');
+xline(i/Fs, 'r');
+subplot(2,1,2);
+plot((1:length(rxData))/Fs, imag(rxData));
+title('Symbol Recovery Results - Quadrature');
+xline(i/Fs,'r');
+xlabel('Time');
+
+
+figure(5);
+subplot(2,1,1);
+title('Tx, Rx, and Corrected Signal - In-Phase');
+hold on;
+plot((1:4*N)/Fs, real([sym1; sym2]), 'r');
+plot((1:4*N)/Fs, real([rx_sym1; rx_sym2]), 'g')
+plot((1:4*N)/Fs, real([corrected_sym1; corrected_sym2]), 'b--', MarkerSize=5);
+ylim([-0.5 0.5]);
+xlabel('Time');
+legend('Transmitted Signal', 'Recieved Signal', 'Corrected Signal', Location='best');
+
+subplot(2,1,2);
+title('Tx, Rx, and Corrected Signal - Quadrature');
+hold on;
+plot((1:4*N)/Fs, imag([sym1; sym2]), 'r');
+plot((1:4*N)/Fs, imag([rx_sym1; rx_sym2]), 'g')
+plot((1:4*N)/Fs, circshift(imag([corrected_sym1; corrected_sym2]), -prefix_len), 'b--', MarkerSize=5);
+ylim([-0.5 0.5]);
+xlabel('Time');
+legend('Transmitted Signal', 'Recieved Signal', 'Corrected Signal', Location= 'best');
