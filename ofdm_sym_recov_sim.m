@@ -107,6 +107,7 @@ p = input("Simulated phase: ");
 snr = input("Signal-to-noise ratio (SNR) in dB: ");
 rxData = awgn(waveform .* [ zeros(10*N, 1); exp(j*(2*pi*time*df + p)).'; zeros(10*N, 1)], snr, 'measured');
 
+
 fprintf('Transmitting and receiving...\n');
 fprintf('Reception complete.\n');
 
@@ -115,12 +116,23 @@ for i = 1:length(rxData)-2*N
     metric(i) = M(i, N, rxData);
 end
 
-i = 2;
+i = prefix_len+1;
 
-while (i < length(rxData)) && ~((metric(i-1)<=metric(i)) && (metric(i+1)<=metric(i)) && (metric(i)>=0.95) )
-    i = i+1;
+% while (i < length(rxData)) && ~((metric(i-1)<=metric(i)) && (metric(i+1)<=metric(i)) && (metric(i)>=0.95) )
+%     i = i+1;
+% end
+
+moving_avg = zeros(1, length(rxData)-prefix_len);
+moving_avg(1) = mean(metric(1:prefix_len));
+moving_avg(2) = mean(metric(1:prefix_len));
+for i = 3:length(rxData)-prefix_len
+    moving_avg(i) = mean(metric(i:i+prefix_len));
+    if ((moving_avg(i)<=moving_avg(i-1)) & moving_avg(i-1)>=moving_avg(i-2) & moving_avg(i-1) >= 0.95);
+        break
+    end
 end
-i = i + prefix_len;
+
+i = i + prefix_len - 1;
 if dbug == 'y'
     i = 10*N+1+prefix_len;
 end
@@ -139,9 +151,9 @@ delta_f = mean(angle(rx_sym1(N+1:end)./rx_sym1(1:N)))/(2*pi*N)*Fs;
 
 fprintf("Fractional part of delta f: %d\n", delta_f)
 
-a_sym1 = rx_sym1 .* exp(-j * 2 * pi * delta_f * t(1:2*N));
+a_sym1 = rx_sym1 .* exp(-j * 2 * pi * delta_f * t(1+prefix_len:2*N+prefix_len));
 
-a_sym2 = rx_sym2 .* exp(-j * 2 * pi * delta_f * t(2*N+prefix_len+1:4*N+prefix_len));
+a_sym2 = rx_sym2 .* exp(-j * 2 * pi * delta_f * t(2*N+2*prefix_len+1:4*N+2*prefix_len));
 
 sym1_fft = fft(a_sym1);
 sym2_fft = fft(a_sym2);
@@ -168,9 +180,14 @@ fprintf("g value: %d, integer part: %d\n", g, (g-1) * Fs/N);
 fprintf("Total calculated delta_f: %d\n", delta_f + (g-1)*Fs/N);
 fprintf("Percentage Error of frequency calculation: %d\n", (df - delta_f + (g-1)*Fs/N)/df);
 
-corrected_sym1 = a_sym1 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(1:2*N)));
+b_sym1 = a_sym1 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(1+prefix_len:2*N+prefix_len)));
 
-corrected_sym2 = a_sym2 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(2*N+prefix_len+1:4*N+prefix_len)));
+b_sym2 = a_sym2 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(2*N+2*prefix_len+1:4*N+2*prefix_len)));
+
+phase = mean(angle(b_sym1 ./ sym1));
+
+corrected_sym1 = b_sym1 .* exp(-j*phase);
+corrected_sym2 = b_sym2 .* exp(-j*phase);
 
 rx_sym1_fft = fft(corrected_sym1);
 rx_sym2_fft = fft(corrected_sym2);
@@ -188,6 +205,7 @@ for n = 1:T
     end
 end
 
+fprintf("BER: %d\n", sym2_errors/T);
 
 figure;
 subplot(2,1,1);
