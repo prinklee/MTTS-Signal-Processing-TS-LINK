@@ -172,21 +172,18 @@ fprintf("g value: %d, integer part: %d\n", g, (g-1) * Fs/N);
 fprintf("Total calculated delta_f: %d\n", delta_f + (g-1)*Fs/N);
 fprintf("Percentage Error of frequency calculation: %d\n", (df - delta_f + (g-1)*Fs/N)/df);
 
-% Correct the integer part of the frequency 
 b_sym1 = a_sym1 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(1+prefix_len:2*N+prefix_len)));
 
 b_sym2 = a_sym2 .* exp(-j * 2 * pi * (g-1) * Fs/N * (t(2*N+2*prefix_len+1:4*N+2*prefix_len)));
 
-% Calculate and correct for phase 
 phase = mean(angle(b_sym1 ./ sym1));
+
 corrected_sym1 = b_sym1 .* exp(-j*phase);
 corrected_sym2 = b_sym2 .* exp(-j*phase);
 
-% Take fft of corrected symbols
 rx_sym1_fft = fft(corrected_sym1);
 rx_sym2_fft = fft(corrected_sym2);
 
-% Demodulate the data to bits  
 rx_sym1_data = pskdemod(rx_sym1_fft, 4, pi/4);
 rx_sym2_data = pskdemod(rx_sym2_fft, 4, pi/4);
 
@@ -194,8 +191,6 @@ sym1_errors = 0;
 sym2_errors = 0;
 
 orig_bits1 = upsample(qpsk_bits1,2);
-
-% Calculate bit error rate for symbol 2 
 for n = 1:T
     if (qpsk_bits2(n) ~= rx_sym2_data(n))
         sym2_errors = sym2_errors + 1;
@@ -203,8 +198,6 @@ for n = 1:T
 end
 
 fprintf("BER: %d\n", sym2_errors/T);
-
-% Graphs 
 
 figure;
 subplot(2,1,1);
