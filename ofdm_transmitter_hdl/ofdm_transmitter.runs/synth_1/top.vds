@@ -3,8 +3,8 @@
 # SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Wed Dec 24 21:58:43 2025
-# Process ID         : 24584
+# Start of session at: Wed Feb 11 12:44:20 2026
+# Process ID         : 13292
 # Current directory  : C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1
 # Command line       : vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file           : C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/top.vds
@@ -19,10 +19,10 @@
 # Host memory        : 32926 MB
 # Swap memory        : 2080 MB
 # Total Virtual      : 35007 MB
-# Available Virtual  : 10346 MB
+# Available Virtual  : 14825 MB
 #-----------------------------------------------------------
 source top.tcl -notrace
-create_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 493.863 ; gain = 212.715
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 491.816 ; gain = 210.500
 Command: read_checkpoint -auto_incremental -incremental C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/utils_1/imports/synth_1/fft_ip_wrapper.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/utils_1/imports/synth_1/fft_ip_wrapper.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -35,27 +35,27 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 26692
+INFO: [Synth 8-7075] Helper process launched with PID 13620
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1213.148 ; gain = 495.387
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1203.367 ; gain = 493.492
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-11241] undeclared symbol 'next_t_valid', assumed default net type 'wire' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/mapping.sv:40]
 WARNING: [Synth 8-8895] 'next_t_valid' is already implicitly declared on line 40 [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/mapping.sv:61]
 WARNING: [Synth 8-6901] identifier 'cstate' is used before its declaration [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/mapping.sv:40]
 WARNING: [Synth 8-6901] identifier 'IDLE' is used before its declaration [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/mapping.sv:40]
-INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/top.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/ofdm.sv:23]
 INFO: [Synth 8-6157] synthesizing module 'mapping' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/mapping.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'sym1_rom' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/sym1_rom.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'sym1_bram' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-24584-Laptop15/realtime/sym1_bram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'sym1_bram' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-24584-Laptop15/realtime/sym1_bram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'sym1_bram' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-13292-Laptop15/realtime/sym1_bram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'sym1_bram' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-13292-Laptop15/realtime/sym1_bram_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'sym1_rom' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/sym1_rom.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'sym2_rom' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/sym2_rom.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'sym2_bram' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-24584-Laptop15/realtime/sym2_bram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'sym2_bram' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-24584-Laptop15/realtime/sym2_bram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'sym2_bram' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-13292-Laptop15/realtime/sym2_bram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'sym2_bram' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-13292-Laptop15/realtime/sym2_bram_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'sym2_rom' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/sym2_rom.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'message_rom' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/message_rom.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'message_bram' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-24584-Laptop15/realtime/message_bram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'message_bram' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-24584-Laptop15/realtime/message_bram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'message_bram' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-13292-Laptop15/realtime/message_bram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'message_bram' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-13292-Laptop15/realtime/message_bram_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'message_rom' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/message_rom.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'counter' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/counter.sv:24]
 	Parameter SIZE bound to: 10 - type: integer 
@@ -65,24 +65,24 @@ INFO: [Synth 8-6157] synthesizing module 'counter__parameterized0' [C:/Users/pri
 INFO: [Synth 8-6155] done synthesizing module 'counter__parameterized0' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/counter.sv:24]
 INFO: [Synth 8-6155] done synthesizing module 'mapping' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/mapping.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'fft_ip_wrapper' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.gen/sources_1/bd/fft_ip/hdl/fft_ip_wrapper.v:13]
-INFO: [Synth 8-6157] synthesizing module 'fft_ip' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-24584-Laptop15/realtime/fft_ip_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'fft_ip' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-24584-Laptop15/realtime/fft_ip_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'fft_ip' [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-13292-Laptop15/realtime/fft_ip_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'fft_ip' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/.Xil/Vivado-13292-Laptop15/realtime/fft_ip_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'fft_ip_wrapper' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.gen/sources_1/bd/fft_ip/hdl/fft_ip_wrapper.v:13]
-INFO: [Synth 8-6155] done synthesizing module 'top' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/top.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'top' (0#1) [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/ofdm.sv:23]
 WARNING: [Synth 8-7129] Port t_ready in module mapping is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1322.801 ; gain = 605.039
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1314.629 ; gain = 604.754
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1322.801 ; gain = 605.039
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1314.629 ; gain = 604.754
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1322.801 ; gain = 605.039
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1314.629 ; gain = 604.754
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1322.801 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1314.629 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -95,30 +95,65 @@ Parsing XDC File [c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter
 Finished Parsing XDC File [c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.gen/sources_1/ip/message_bram/message_bram/message_bram_in_context.xdc] for cell 'map/u_msg_rom/u_msg1'
 Parsing XDC File [c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.gen/sources_1/bd/fft_ip/fft_ip/fft_ip_in_context.xdc] for cell 'ifft/fft_ip_i'
 Finished Parsing XDC File [c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.gen/sources_1/bd/fft_ip/fft_ip/fft_ip_in_context.xdc] for cell 'ifft/fft_ip_i'
+Parsing XDC File [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc]
+WARNING: [Vivado 12-584] No ports matched 'led[0]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:10]
+WARNING: [Vivado 12-584] No ports matched 'led[1]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:11]
+WARNING: [Vivado 12-584] No ports matched 'led[2]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:12]
+WARNING: [Vivado 12-584] No ports matched 'led[3]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:13]
+WARNING: [Vivado 12-584] No ports matched 'led_r[0]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:15]
+WARNING: [Vivado 12-584] No ports matched 'led_g[0]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:16]
+WARNING: [Vivado 12-584] No ports matched 'led_b[0]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:17]
+WARNING: [Vivado 12-584] No ports matched 'led_r[1]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:18]
+WARNING: [Vivado 12-584] No ports matched 'led_g[1]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:19]
+WARNING: [Vivado 12-584] No ports matched 'led_b[1]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:20]
+WARNING: [Vivado 12-584] No ports matched 'led_r[2]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:21]
+WARNING: [Vivado 12-584] No ports matched 'led_g[2]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:22]
+WARNING: [Vivado 12-584] No ports matched 'led_b[2]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:23]
+WARNING: [Vivado 12-584] No ports matched 'led_r[3]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:24]
+WARNING: [Vivado 12-584] No ports matched 'led_g[3]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:25]
+WARNING: [Vivado 12-584] No ports matched 'led_b[3]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:26]
+WARNING: [Vivado 12-584] No ports matched 'btn[0]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:28]
+WARNING: [Vivado 12-584] No ports matched 'btn[1]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:29]
+WARNING: [Vivado 12-584] No ports matched 'btn[2]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:30]
+WARNING: [Vivado 12-584] No ports matched 'btn[3]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:31]
+WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:33]
+WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:34]
+WARNING: [Vivado 12-584] No ports matched 'sw[2]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:35]
+WARNING: [Vivado 12-584] No ports matched 'sw[3]'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:36]
+WARNING: [Vivado 12-584] No ports matched 'uart_txd'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:39]
+WARNING: [Vivado 12-584] No ports matched 'uart_rxd'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:40]
+WARNING: [Vivado 12-584] No ports matched 'reset'. [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc:42]
+Finished Parsing XDC File [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1391.289 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1385.887 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1391.289 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1385.887 ; gain = 0.000
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'map/u_msg_rom/u_msg1' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'map/u_sym1_rom/u_sym1' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'map/u_sym2_rom/u_sym2' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1391.289 ; gain = 673.527
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1387.488 ; gain = 677.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1391.289 ; gain = 673.527
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1387.488 ; gain = 677.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1391.289 ; gain = 673.527
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1387.488 ; gain = 677.613
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'cstate_reg' in module 'mapping'
 ---------------------------------------------------------------------------------------------------
@@ -131,7 +166,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'cstate_reg' in module 'mapp
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'cstate_reg' using encoding 'sequential' in module 'mapping'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1391.289 ; gain = 673.527
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1387.488 ; gain = 677.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -174,25 +209,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1391.289 ; gain = 673.527
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1387.488 ; gain = 677.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1524.648 ; gain = 806.887
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1517.844 ; gain = 807.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1524.984 ; gain = 807.223
+Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 1548.414 ; gain = 838.539
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1544.051 ; gain = 826.289
+Finished Technology Mapping : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 1548.414 ; gain = 838.539
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -210,37 +245,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1769.293 ; gain = 1051.531
+Finished IO Insertion : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1763.391 ; gain = 1053.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1769.293 ; gain = 1051.531
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1763.391 ; gain = 1053.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1769.293 ; gain = 1051.531
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1763.391 ; gain = 1053.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1769.293 ; gain = 1051.531
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1763.391 ; gain = 1053.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1769.293 ; gain = 1051.531
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1763.391 ; gain = 1053.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1769.293 ; gain = 1051.531
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1763.391 ; gain = 1053.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -269,35 +304,35 @@ Report Cell Usage:
 |7     |LUT1         |     2|
 |8     |LUT2         |     3|
 |9     |LUT3         |     7|
-|10    |LUT4         |    10|
-|11    |LUT5         |     7|
-|12    |LUT6         |    14|
+|10    |LUT4         |    11|
+|11    |LUT5         |     5|
+|12    |LUT6         |    15|
 |13    |FDRE         |    28|
 |14    |IBUF         |     7|
-|15    |OBUF         |    34|
+|15    |OBUF         |    35|
 +------+-------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1769.293 ; gain = 1051.531
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1763.391 ; gain = 1053.516
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 1769.293 ; gain = 983.043
-Synthesis Optimization Complete : Time (s): cpu = 00:00:33 ; elapsed = 00:00:36 . Memory (MB): peak = 1769.293 ; gain = 1051.531
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:24 ; elapsed = 00:00:34 . Memory (MB): peak = 1763.391 ; gain = 980.656
+Synthesis Optimization Complete : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1763.391 ; gain = 1053.516
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1778.449 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1768.930 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1782.125 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1772.277 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 53dc5a49
+Synth Design complete | Checksum: 7f5d64a
 INFO: [Common 17-83] Releasing license: Synthesis
-47 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+48 Infos, 36 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:01:08 . Memory (MB): peak = 1782.125 ; gain = 1275.367
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1782.125 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:40 ; elapsed = 00:00:46 . Memory (MB): peak = 1772.277 ; gain = 1266.574
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1772.277 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.runs/synth_1/top.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Dec 24 22:00:03 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Feb 11 12:45:18 2026...

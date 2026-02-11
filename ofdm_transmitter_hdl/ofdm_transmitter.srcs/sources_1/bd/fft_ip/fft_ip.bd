@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xB817F6293FBEEF80",
+      "boundary_crc": "0x2D127542030B71C2",
       "device": "xc7a100tcsg324-1",
       "gen_directory": "../../../../ofdm_transmitter.gen/sources_1/bd/fft_ip",
       "name": "fft_ip",
@@ -107,6 +107,19 @@
             "value_src": "default"
           }
         }
+      },
+      "overflow": {
+        "direction": "O",
+        "parameters": {
+          "PortWidth": {
+            "value": "1",
+            "value_src": "default_prop"
+          },
+          "SENSITIVITY": {
+            "value": "EDGE_RISING",
+            "value_src": "const_prop"
+          }
+        }
       }
     },
     "components": {
@@ -139,6 +152,12 @@
           "output_ordering": {
             "value": "natural_order"
           },
+          "ovflo": {
+            "value": "true"
+          },
+          "phase_factor_width": {
+            "value": "34"
+          },
           "run_time_configurable_transform_length": {
             "value": "false"
           },
@@ -149,7 +168,7 @@
             "value": "1"
           },
           "target_clock_frequency": {
-            "value": "200"
+            "value": "100"
           },
           "throttle_scheme": {
             "value": "nonrealtime"
@@ -272,6 +291,12 @@
         "ports": [
           "s_tlast",
           "xfft_0/s_axis_data_tlast"
+        ]
+      },
+      "xfft_0_event_fft_overflow": {
+        "ports": [
+          "xfft_0/event_fft_overflow",
+          "overflow"
         ]
       },
       "xfft_0_m_axis_data_tdata": {

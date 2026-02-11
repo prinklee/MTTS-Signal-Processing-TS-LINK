@@ -56,12 +56,8 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 4
 set_param general.usePosixSpawnForFork 1
-set_param project.hsv.suppressChildGraphs 0
-set_param checkpoint.writeSynthRtdsInDcp 1
-set_msg_config -id {Common 17-41} -limit 10000000
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tcsg324-1
 
@@ -80,25 +76,25 @@ set_property ip_output_repo c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_t
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-add_files c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/ip/sym1.coe
-add_files c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/ip/sym2.coe
-add_files c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/ip/message.coe
+add_files C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/ip/sym1.coe
+add_files C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/ip/sym2.coe
+add_files C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/ip/message.coe
 read_verilog -library xil_defaultlib -sv {
   C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/counter.sv
   C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/mapping.sv
   C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/message_rom.sv
   C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/sym1_rom.sv
   C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/sym2_rom.sv
-  C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/top.sv
+  C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/new/ofdm.sv
 }
 read_verilog -library xil_defaultlib C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.gen/sources_1/bd/fft_ip/hdl/fft_ip_wrapper.v
-read_ip -quiet c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/ip/sym1_bram/sym1_bram.xci
+read_ip -quiet C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/ip/sym1_bram/sym1_bram.xci
 set_property used_in_implementation false [get_files -all c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.gen/sources_1/ip/sym1_bram/sym1_bram_ooc.xdc]
 
-read_ip -quiet c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/ip/sym2_bram/sym2_bram.xci
+read_ip -quiet C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/ip/sym2_bram/sym2_bram.xci
 set_property used_in_implementation false [get_files -all c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.gen/sources_1/ip/sym2_bram/sym2_bram_ooc.xdc]
 
-read_ip -quiet c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/ip/message_bram/message_bram.xci
+read_ip -quiet C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/ip/message_bram/message_bram.xci
 set_property used_in_implementation false [get_files -all c:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.gen/sources_1/ip/message_bram/message_bram_ooc.xdc]
 
 add_files C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/sources_1/bd/fft_ip/fft_ip.bd
@@ -113,6 +109,9 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
+read_xdc C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc
+set_property used_in_implementation false [get_files C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/constrs_1/new/arty.xdc]
+
 set_param ips.enableIPCacheLiteLoad 1
 
 read_checkpoint -auto_incremental -incremental C:/Users/priya/MTTS-Signal-Processing-TS-LINK/ofdm_transmitter_hdl/ofdm_transmitter.srcs/utils_1/imports/synth_1/fft_ip_wrapper.dcp

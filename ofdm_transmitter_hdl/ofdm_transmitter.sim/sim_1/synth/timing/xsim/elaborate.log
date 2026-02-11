@@ -1,0 +1,37 @@
+Vivado Simulator v2025.1.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/2025.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 --maxdelay -L xil_defaultlib -L uvm -L simprims_ver -L secureip --snapshot tb_ifft_time_synth -transport_int_delays -pulse_r 0 -pulse_int_r 0 -pulse_e 0 -pulse_int_e 0 xil_defaultlib.tb_ifft xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module simprims_ver.GND
+Compiling module simprims_ver.LUT5
+Compiling module simprims_ver.FDRE_default
+Compiling module simprims_ver.LUT4
+Compiling module simprims_ver.LUT6
+Compiling module simprims_ver.x_lut2_mux4
+Compiling module simprims_ver.LUT2
+Compiling module simprims_ver.FDSE_default
+Compiling module simprims_ver.x_lut1_mux2
+Compiling module simprims_ver.LUT1
+Compiling module simprims_ver.x_lut3_mux8
+Compiling module simprims_ver.LUT3
+Compiling module simprims_ver.SRL16E_default
+Compiling module simprims_ver.CARRY4
+Compiling module simprims_ver.RB18_INTERNAL_VLOG(DOA_REG=1,DOB...
+Compiling module simprims_ver.RAMB18E1(DOA_REG=1,DOB_REG=1,RAM...
+Compiling module simprims_ver.DSP48E1(ACASCREG=2,ALUMODEREG=0,...
+Compiling module simprims_ver.DSP48E1(ALUMODEREG=0,BCASCREG=2,...
+Compiling module simprims_ver.RAMS64E
+Compiling module simprims_ver.SRLC32E_default
+Compiling module xil_defaultlib.fft_ip_xfft_0_0
+Compiling module xil_defaultlib.fft_ip
+Compiling module xil_defaultlib.fft_ip_wrapper
+Compiling module xil_defaultlib.tb_ifft
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_ifft_time_synth

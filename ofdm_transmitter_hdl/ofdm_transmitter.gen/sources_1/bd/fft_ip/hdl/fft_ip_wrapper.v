@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-//Date        : Wed Dec 24 20:00:26 2025
+//Date        : Sat Feb  7 14:41:01 2026
 //Host        : Laptop15 running 64-bit major release  (build 9200)
 //Command     : generate_target fft_ip_wrapper.bd
 //Design      : fft_ip_wrapper
@@ -17,6 +17,7 @@ module fft_ip_wrapper
     imag_data,
     imag_in,
     n_rst,
+    overflow,
     real_data,
     real_in,
     s_tlast,
@@ -28,6 +29,7 @@ module fft_ip_wrapper
   output [15:0]imag_data;
   input [15:0]imag_in;
   input n_rst;
+  output overflow;
   output [15:0]real_data;
   input [15:0]real_in;
   input s_tlast;
@@ -40,6 +42,7 @@ module fft_ip_wrapper
   wire [15:0]imag_data;
   wire [15:0]imag_in;
   wire n_rst;
+  wire overflow;
   wire [15:0]real_data;
   wire [15:0]real_in;
   wire s_tlast;
@@ -53,6 +56,7 @@ module fft_ip_wrapper
         .imag_data(imag_data),
         .imag_in(imag_in),
         .n_rst(n_rst),
+        .overflow(overflow),
         .real_data(real_data),
         .real_in(real_in),
         .s_tlast(s_tlast),

@@ -122,9 +122,9 @@ module mapping (
                end
            end
            SYM2: begin
-               next_real = sym2_bits[1] ? -16'h100 : 16'h100;
-               next_imag = sym2_bits[0] ? -16'h100 : 16'h100;
-           end
+                   next_real = sym2_bits[1] ? -16'h100 : 16'h100;
+                   next_imag = sym2_bits[0] ? -16'h100 : 16'h100;
+               end
            MESSAGE: begin
                next_real = msg_bits[1] ? -16'h100 : 16'h100;
                next_imag = msg_bits[0] ? -16'h100 : 16'h100;

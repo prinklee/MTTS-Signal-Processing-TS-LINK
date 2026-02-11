@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-//Date        : Wed Dec 24 20:00:26 2025
+//Date        : Sat Feb  7 14:41:01 2026
 //Host        : Laptop15 running 64-bit major release  (build 9200)
 //Command     : generate_target fft_ip.bd
 //Design      : fft_ip
@@ -10,7 +10,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* HW_HANDOFF = "fft_ip.hwdef" *) (* core_generation_info = "fft_ip,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=fft_ip,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=6,numReposBlks=6,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,synth_mode=Singular}" *) 
+(* CORE_GENERATION_INFO = "fft_ip,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=fft_ip,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=6,numReposBlks=6,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,synth_mode=Singular}" *) (* HW_HANDOFF = "fft_ip.hwdef" *) 
 module fft_ip
    (clk,
     fft_tlast,
@@ -18,17 +18,19 @@ module fft_ip
     imag_data,
     imag_in,
     n_rst,
+    overflow,
     real_data,
     real_in,
     s_tlast,
     s_tready,
     s_tvalid);
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_RESET n_rst, CLK_DOMAIN fft_ip_clk, FREQ_HZ 200000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_RESET n_rst, CLK_DOMAIN fft_ip_clk, FREQ_HZ 200000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input clk;
   output fft_tlast;
   output fft_tvalid;
   output [15:0]imag_data;
   input [15:0]imag_in;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 RST.N_RST RST" *) (* x_interface_parameter = "XIL_INTERFACENAME RST.N_RST, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input n_rst;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.N_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.N_RST, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input n_rst;
+  output overflow;
   output [15:0]real_data;
   input [15:0]real_in;
   input s_tlast;
@@ -44,6 +46,7 @@ module fft_ip
   wire [15:0]imag_data;
   wire [15:0]imag_in;
   wire n_rst;
+  wire overflow;
   wire [15:0]real_data;
   wire [15:0]real_in;
   wire s_tlast;
@@ -59,10 +62,12 @@ module fft_ip
   fft_ip_xfft_0_0 xfft_0
        (.aclk(clk),
         .aresetn(n_rst),
+        .event_fft_overflow(overflow),
         .m_axis_data_tdata(xfft_0_m_axis_data_tdata),
         .m_axis_data_tlast(fft_tlast),
         .m_axis_data_tready(1'b1),
         .m_axis_data_tvalid(fft_tvalid),
+        .m_axis_status_tready(1'b1),
         .s_axis_config_tdata(ilconstant_0_dout),
         .s_axis_config_tvalid(ilconstant_1_dout),
         .s_axis_data_tdata(ilconcat_0_dout),

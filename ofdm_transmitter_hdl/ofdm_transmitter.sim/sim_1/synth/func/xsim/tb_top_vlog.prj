@@ -3,7 +3,7 @@ verilog xil_defaultlib  --include "../../../../../../../../../Xilinx/2025.1/Viva
 "tb_top_func_synth.v" \
 
 sv xil_defaultlib  --include "../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
-"../../../../../ofdm_transmitter.srcs/sim_1/new/tb_top.sv" \
+"../../../../../ofdm_transmitter.srcs/sim_1/imports/new/tb_ofdm.sv" \
 
 # Do not sort compile order
 nosort
