@@ -68,10 +68,9 @@ N = T/2;
 prefix_len = 64; 
 
 qpsk_bits1 = randi([0,3], N, 1);
-even_coeffs = pskmod(qpsk_bits1, 4, pi/4);
+even_coeffs = pskmod(qpsk_bits1, 4, pi/4)/sqrt(2);
 
 coeffs = upsample(even_coeffs,2);
-
 sym1 = ifft(coeffs);
 
 qpsk_bits2 = randi([0,3], T, 1);
@@ -250,14 +249,13 @@ title('Symbol Recovery Results - Quadrature');
 xline(i/Fs,'r');
 xlabel('Time');
 
-
 figure;
 subplot(2,1,1);
 title('Tx, Rx, and Corrected Signal - In-Phase');
 hold on;
 plot((1:4*N)/Fs, real([sym1; sym2]), 'r');
 plot((1:4*N)/Fs, real([rx_sym1; rx_sym2]), 'g')
-plot((1:4*N)/Fs, real([corrected_sym1; corrected_sym2]), 'b.', MarkerSize=5);
+plot((1:4*N)/Fs, real([corrected_sym1; corrected_sym2]), 'b--', MarkerSize=5);
 ylim([-0.5 0.5]);
 xlabel('Time');
 legend('Transmitted Signal', 'Recieved Signal', 'Corrected Signal', Location='best');
@@ -267,8 +265,23 @@ title('Tx, Rx, and Corrected Signal - Quadrature');
 hold on;
 plot((1:4*N)/Fs, imag([sym1; sym2]), 'r');
 plot((1:4*N)/Fs, imag([rx_sym1; rx_sym2]), 'g')
-plot((1:4*N)/Fs, imag([corrected_sym1; corrected_sym2]), 'b.', MarkerSize=5);
+plot((1:4*N)/Fs, imag([corrected_sym1; corrected_sym2]), 'b--', MarkerSize=5);
 ylim([-0.5 0.5]);
 xlabel('Time');
 legend('Transmitted Signal', 'Recieved Signal', 'Corrected Signal', Location= 'best');
 
+figure(6)
+title('Tx, Rx, and Corrected Signal - WRONG Constellation');
+hold on;
+plot(fft([sym1; sym2]), 'ro');
+plot(fft([rx_sym1; rx_sym2]), 'g*')
+plot(fft([corrected_sym1; corrected_sym2]), 'bx');
+legend('Transmitted Signal', 'Recieved Signal', 'Corrected Signal', Location= 'best');
+
+figure(7)
+title('Tx, Rx, and Corrected Signal - CORRECT Constellation');
+hold on;
+plot([fft(sym1); fft(sym2)], 'ro');
+plot([fft(rx_sym1); fft(rx_sym2)], 'g*')
+plot([fft(corrected_sym1); fft(corrected_sym2)], 'bx');
+legend('Transmitted Signal', 'Recieved Signal', 'Corrected Signal', Location= 'best');
